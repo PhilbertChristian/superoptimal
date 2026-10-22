@@ -244,6 +244,7 @@ body{overflow:hidden}
 .c-lilac{--bg:#EDE6F9;--dp:#7E5CDB}
 .c-aqua{--bg:#DCF4F6;--dp:#1F9AA6}
 .soft{background:var(--bg);border-radius:var(--r-lg);padding:26px}
+.soft.plain{background:#fff;--dp:#A6192E;border-radius:20px}
 .soft h3{font-size:22px;letter-spacing:-.03em}
 .soft p{color:var(--body);margin-top:10px}
 .bubbles{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column}
@@ -255,22 +256,15 @@ body{overflow:hidden}
 /* ---------- workshop: the evening as soft tiles ---------- */
 .evening{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .ws-frame{margin-top:0}
-.step{position:relative;background:var(--bg);border-radius:var(--r-lg);padding:20px 22px;display:flex;flex-direction:column;gap:8px;overflow:hidden;isolation:isolate}
+.step{position:relative;background:#fff;border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;justify-content:flex-start;gap:10px;overflow:hidden;isolation:isolate}
 .step.span2{grid-column:span 2}
 .step.span3{grid-column:1/-1;flex-direction:row;align-items:center;gap:8px 14px;flex-wrap:wrap}
-.step b{font-size:20px;font-weight:600;letter-spacing:-.03em;line-height:1.15}
-.step .d{color:var(--body);font-size:15px}
-.step.build{min-height:230px;justify-content:flex-end;color:#fff;background:var(--g)}
-.step.build .d{color:rgba(255,255,255,.92)}
-.step.build.g1{color:var(--ink)}
-.step.build.g1 .d{color:rgba(17,17,20,.78)}
-.step.g1 .num{color:var(--ink);opacity:.12}
-.g1{--g:linear-gradient(160deg,#FFE27A 0%,#FF9D4D 55%,#FF5E7A 100%)}
-.g2{--g:linear-gradient(160deg,#7EE3FF 0%,#3B4CFF 62%,#7A3CFF 100%)}
-.g3{--g:linear-gradient(160deg,#FFB3CC 0%,#F2509A 58%,#7A3CFF 100%)}
-.step.build .tpill{position:absolute;top:18px;left:20px}
-.step .num{position:absolute;right:16px;top:-18px;z-index:-1;font-size:160px;font-weight:500;line-height:1;letter-spacing:-.06em;color:#fff;opacity:.28}
-.step.build b{font-size:24px}
+.step b{font-size:19px;font-weight:600;letter-spacing:-.025em;line-height:1.2}
+.step .d{color:var(--body);font-size:15px;line-height:1.45}
+.step .tpill{background:var(--page);color:var(--ink)}
+.step.build{background:#FBEFEF}
+.step.build .tpill{background:var(--brand);color:#fff}
+.step .num{position:absolute;right:16px;bottom:-22px;z-index:-1;font-size:120px;font-weight:500;line-height:1;letter-spacing:-.06em;color:var(--brand);opacity:.08}
 .trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
 .ws-end{margin-top:22px;display:flex;justify-content:center}
 .foot{padding-block:40px 36px;color:var(--soft);font-size:13.5px}
@@ -317,11 +311,10 @@ body{overflow:hidden}
 .about{display:flex;flex-direction:column;gap:6px}
 .about p{color:var(--body);font-size:15.5px}
 .mini{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin:4px 0}
-.mini .step{padding:9px 10px 10px;border-radius:14px;gap:6px;min-height:92px;justify-content:space-between}
-.mini .step b{font-size:13.5px;line-height:1.2;letter-spacing:-.015em}
+.mini .step{padding:10px 12px 12px;border-radius:14px;gap:8px;min-height:0;justify-content:flex-start}
+.mini .step b{font-size:14px;line-height:1.25;letter-spacing:-.015em}
 .mini .tpill{font-size:11px;padding:2px 8px}
-.mini .step.build .tpill{position:static}
-.mini .num{font-size:58px;top:-6px;right:6px}
+.mini .num{display:none}
 .facts3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .facts3 .soft{padding:13px 15px;border-radius:16px}
 .facts3 h4{font-size:15px;letter-spacing:-.02em}
@@ -347,8 +340,7 @@ body{overflow:hidden}
 @media (max-width:820px){
 .evening,.trio,.facts3{grid-template-columns:1fr}
 .step.span2{grid-column:auto}
-.evening .step.build{min-height:150px}
-.evening .step .num{font-size:120px}
+.evening .step .num{font-size:96px}
 .mini{grid-template-columns:repeat(3,minmax(0,1fr))}
 .rows,.reg{grid-template-columns:1fr}
 }
@@ -480,9 +472,9 @@ body{overflow:hidden}
 </div>
 <div class="frame ws-frame"><div class="evening" id="evening"></div>
 <div class="trio">
-<div class="soft c-butter"><h3>Bring</h3><ul class="bubbles"><li><span>A laptop and an app with an AI feature</span></li><li><span>No app? Work on the sample app</span></li></ul></div>
-<div class="soft c-aqua"><h3>Take home</h3><ul class="bubbles"><li><span><b>Your AI feature, instrumented</b></span></li><li><span><b>An eval loop you can rerun</b></span></li><li><span><b>A reference event schema</b> (HeadOn's)</span></li><li><span><b>The session recording</b></span></li></ul></div>
-<div class="soft c-lilac"><h3>Who should join</h3><p>AI engineers, product engineers and founding engineers shipping agents, copilots, retrieval or summarization.</p></div>
+<div class="soft plain"><h3>Bring</h3><ul class="bubbles"><li><span>A laptop and an app with an AI feature</span></li><li><span>No app? Work on the sample app</span></li></ul></div>
+<div class="soft plain"><h3>Take home</h3><ul class="bubbles"><li><span><b>Your AI feature, instrumented</b></span></li><li><span><b>An eval loop you can rerun</b></span></li><li><span><b>A reference event schema</b> (HeadOn's)</span></li><li><span><b>The session recording</b></span></li></ul></div>
+<div class="soft plain"><h3>Who should join</h3><p>AI engineers, product engineers and founding engineers shipping agents, copilots, retrieval or summarization.</p></div>
 </div>
 </div>
 <div class="ws-end"><a class="pill dark" href="#dates" data-go="dates">Find your city</a></div>
@@ -536,14 +528,14 @@ let nextI=STOPS.findIndex(s=>s.date>=todayISO);if(nextI<0)nextI=N-1;
 
 /* ---------- the evening (one timeline, builds color coded) ---------- */
 const EVENING=[
-['5:30 PM','Doors open','Food, drinks and laptop setup',0,'c-butter'],
-['6:00 PM','Why AI features fail quietly','Plus a walkthrough of HeadOn, an AI product with real users',0,'c-blush span2'],
-['6:50 PM','Events and a funnel','Instrument the actions your AI feature is supposed to drive, then see who finishes',1,'g1'],
-['7:30 PM','Traces and cost','Latency, tokens and spend per answer, tied to the user who saw it',2,'g2'],
-['8:10 PM','An eval loop','Score answers and chart quality next to retention',3,'g3'],
-['8:50 PM','Wrap','What to watch in your first week of data',0,'c-aqua span3'],
+['5:30 PM','Doors open','Food, drinks and laptop setup',0,''],
+['6:00 PM','Why AI features fail quietly','Plus a walkthrough of HeadOn, an AI product with real users',0,'span2'],
+['6:50 PM','Events and a funnel','Instrument the actions your AI feature is supposed to drive, then see who finishes',1,''],
+['7:30 PM','Traces and cost','Latency, tokens and spend per answer, tied to the user who saw it',2,''],
+['8:10 PM','An eval loop','Score answers and chart quality next to retention',3,''],
+['8:50 PM','Wrap','What to watch in your first week of data',0,'span3'],
 ];
-const eveningHTML=(mini=false)=>EVENING.map(([t,h,s,b,c])=>`<div class="step ${mini?c.split(' ')[0]:c}${b?' build':''}"><span class="tpill">${t}${b&&!mini?` · Build ${b}`:''}</span>${b?`<span class="num" aria-hidden="true">${b}</span>`:''}<b>${h}</b>${mini?'':`<span class="d">${s}</span>`}</div>`).join('');
+const eveningHTML=(mini=false)=>EVENING.map(([t,h,s,b,c])=>`<div class="step${mini||!c?'':' '+c}${b?' build':''}"><span class="tpill">${t}${b&&!mini?` · Build ${b}`:''}</span>${b?`<span class="num" aria-hidden="true">${b}</span>`:''}<b>${h}</b>${mini?'':`<span class="d">${s}</span>`}</div>`).join('');
 document.getElementById('evening').innerHTML=eveningHTML();
 
 

@@ -468,7 +468,6 @@ body{overflow:hidden}
 <div class="side-foot">
 <div class="contact">
 <span class="side-h">Contact</span>
-<a href="https://luma.com/superoptimal" target="_blank" rel="noopener"><b>Luma calendar</b><span>Follow for new cities</span></a>
 <a href="https://superoptimal.pipedrive.com/scheduler/4X9vk7CE/meeting-diego-mangabeira-superoptimal" target="_blank" rel="noopener"><b>Sponsors</b><span>Book a call</span></a>
 </div>
 </div>
@@ -538,7 +537,7 @@ body{overflow:hidden}
 </div>
 </div>
 </section>
-<p class="foot"><span>© 2026 The Superoptimal</span><a href="https://luma.com/superoptimal" target="_blank" rel="noopener">Luma calendar</a><a href="https://superoptimal.pipedrive.com/scheduler/4X9vk7CE/meeting-diego-mangabeira-superoptimal" target="_blank" rel="noopener">Sponsors: book a call</a></p>
+<p class="foot"><span>© 2026 The Superoptimal</span><a href="https://superoptimal.pipedrive.com/scheduler/4X9vk7CE/meeting-diego-mangabeira-superoptimal" target="_blank" rel="noopener">Sponsors: book a call</a></p>
 </div>
 </div>
 
@@ -550,7 +549,7 @@ body{overflow:hidden}
 </div>
 <div class="filters" id="filters" role="tablist" aria-label="Filter by month"></div>
 <div class="frame series-frame"><div id="series"></div><div class="series tba-series"><div class="series-head"><h3>12th city <span>Announced soon</span></h3></div></div></div>
-<p class="foot"><span>© 2026 The Superoptimal</span><a href="https://luma.com/superoptimal" target="_blank" rel="noopener">Luma calendar</a><a href="https://superoptimal.pipedrive.com/scheduler/4X9vk7CE/meeting-diego-mangabeira-superoptimal" target="_blank" rel="noopener">Sponsors: book a call</a></p>
+<p class="foot"><span>© 2026 The Superoptimal</span><a href="https://superoptimal.pipedrive.com/scheduler/4X9vk7CE/meeting-diego-mangabeira-superoptimal" target="_blank" rel="noopener">Sponsors: book a call</a></p>
 </section>
 </div>
 
@@ -699,7 +698,7 @@ const g=e.target.closest('[data-go]');if(g){e.preventDefault();show(g.dataset.go
 });
 
 /* ---------- event page ---------- */
-const HOST_EMAIL='adam@superoptimal.io',LUMA_CAL='https://luma.com/superoptimal';
+const HOST_EMAIL='adam@superoptimal.io';
 const UTC_OFF={EST:-5,CST:-6,PST:-8,GMT:0,CET:1,IDT:3,GST:4}; /* offsets on each stop's date */
 const utcStamp=(l,h,m)=>{const [y,mo,dd]=l.date.split('-').map(Number);return new Date(Date.UTC(y,mo-1,dd,h,m)-(UTC_OFF[l.tz]||0)*36e5).toISOString().replace(/[-:]|\.\d{3}/g,'')};
 const evTitle=l=>`Analyzing Your AI Agents in Production: ${l.n}`;
@@ -736,7 +735,7 @@ ${nx?`<button class="ev-step nx" type="button" data-ev="${nx.k}" aria-label="Nex
 <aside class="ev-side">
 <div class="ev-cover">${cover(l)}</div>
 <div class="lu"><div class="lu-h">Presented by</div>
-<div class="pres"><a class="pres-name" href="${LUMA_CAL}" target="_blank" rel="noopener">${WORDMARK}${ICO.chev}</a><a class="follow" href="${LUMA_CAL}" target="_blank" rel="noopener">Follow</a></div>
+<div class="pres"><span class="pres-name">${WORDMARK}</span></div>
 <a class="going" href="#past" data-go="past"><span class="faces">${PAST.slice(0,4).map(p=>`<img src="${LUMA}${p.cv}" alt="" loading="lazy">`).join('')}</span><span>1,000+ engineers registered for our past rooms</span></a>
 </div>
 <div class="lu"><div class="lu-h">Hosted By</div><div class="hosts">
@@ -756,7 +755,7 @@ ${nx?`<button class="ev-step nx" type="button" data-ev="${nx.k}" aria-label="Nex
 <div class="reg"><div class="reg-h">Registration</div>
 <div class="appr"><span class="ico">${ICO.appr}</span><div><b>Approval Required</b><span>Your registration is subject to host approval.</span><span>Welcome! To join the event, please register below.</span></div></div>
 <div class="act">${reg}<div class="mini-act"><details class="cal"><summary>${ICO.cal}<span>Add to calendar</span></summary><div class="menu"><a href="${gcalURL(l)}" target="_blank" rel="noopener">Google Calendar</a><button type="button" data-ics>Apple or Outlook (.ics)</button></div></details><button type="button" class="share">${ICO.share}<span>Share</span></button></div></div>
-<div class="msg" id="join-msg" hidden>Registration for ${l.n} opens soon. Follow our <a href="${LUMA_CAL}" target="_blank" rel="noopener">Luma calendar</a> to hear first.</div>
+<div class="msg" id="join-msg" hidden>Registration for ${l.n} opens soon.</div>
 </div>
 <div class="lu about"><div class="lu-h">About Event</div>
 <p><b>How do you know your AI agents are working in production?</b> Most AI features look fine in the demo and fail quietly in production. On your own app, lecturer Adam Becker shows you whether users finish what the AI started, what each answer costs, and whether the answer was any good.</p>

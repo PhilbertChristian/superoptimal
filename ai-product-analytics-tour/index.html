@@ -762,7 +762,7 @@ ${nx?`<button class="ev-step nx" type="button" data-ev="${nx.k}" aria-label="Nex
 <p><b>Come prepared:</b> a laptop and an app with an AI feature, or work on the sample app.</p>
 <p><b>What you take home:</b> your AI feature instrumented, an eval loop you can rerun, HeadOn's reference event schema and the session recording.</p>
 <p><b>Who should join:</b> AI, product and founding engineers in ${l.n} shipping agents, copilots, retrieval or summarization.</p>
-<p class="closing">Come for the workshop. Stay for the food, drinks, and people. Space is limited, register early.</p>
+<p class="closing">Come for the workshop. Stay for the food, drinks, and people. Space is limited, so register early.</p>
 </div>
 <div class="lu"><div class="lu-h">Event Agenda</div>${agendaHTML()}</div>
 </div>
@@ -784,7 +784,7 @@ if(evp.hidden)return;
 const on=matchMedia('(min-width:1021px) and (min-height:560px)').matches;
 stage.classList.toggle('ev-open',on);evp.classList.toggle('fit',on);
 if(!on){evp.style.removeProperty('--fs');return}
-const fits=()=>stage.scrollHeight<=stage.clientHeight+1;
+const fits=()=>stage.scrollHeight<=stage.clientHeight;
 let lo=11.5,hi=17;
 evp.style.setProperty('--fs',hi+'px');if(fits())return;
 for(let n=0;n<8;n++){const m=(lo+hi)/2;evp.style.setProperty('--fs',m+'px');if(fits())lo=m;else hi=m}

@@ -132,7 +132,7 @@ body{overflow:hidden}
 .bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
 .tile{position:relative;border-radius:24px;background:#fff;padding:clamp(18px,2vw,26px);min-width:0}
 .tile.c-butter,.tile.c-aqua,.tile.c-sky,.tile.c-blush,.tile.c-lilac{background:var(--bg)}
-.hero .bento{grid-template-columns:minmax(0,1fr) 226px}
+.hero .bento{grid-template-columns:minmax(0,85fr) minmax(196px,15fr)}
 .t-intro{grid-column:auto;display:flex;flex-direction:column;justify-content:center}
 .t-intro .label{background:var(--page);box-shadow:none;align-self:flex-start}
 .t-intro h1{font-size:clamp(38px,4.4vw,62px);line-height:1;letter-spacing:-.045em;font-weight:500;margin-top:12px}
@@ -145,7 +145,7 @@ body{overflow:hidden}
 .t-lect{grid-column:auto;display:flex;flex-direction:column;gap:2px;background:#FAF7F1;--dp:#A6192E;padding:16px 13px}
 .t-lect img{width:min(100%,200px);height:auto;aspect-ratio:1;border-radius:18px;object-fit:cover;margin-bottom:10px;display:block}
 .blips{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
-.blips li{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);line-height:1.2;white-space:nowrap}
+.blips li{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;font-weight:600;letter-spacing:-.005em;color:var(--ink);line-height:1.2;white-space:nowrap}
 .blips li::before{content:"";flex:none;width:3px;height:13px;margin-top:1px;background:var(--brand)}
 .t-lect h3{font-size:23px;letter-spacing:-.04em;line-height:1.05;margin-top:2px}
 .t-lect .bio{color:var(--body);font-size:15px;margin-top:10px}
@@ -494,7 +494,7 @@ body{overflow:hidden}
 <img data-img="adam" alt="Adam Becker">
 <span class="side-h">Lecturer</span>
 <h3>Adam Becker</h3>
-<ul class="blips"><li>Founder, CEO of HeadOn</li><li>ML Engineer, 10+ Years</li><li>ex-COO, MLOps Community</li></ul>
+<ul class="blips"><li>Founder, CEO of HeadOn</li><li>ML Engineer, 10 YoE</li><li>ex-COO, MLOps</li></ul>
 </div>
 <div class="tile tourmap">
 <div class="tm-top"><span class="chip"><i></i>World tour</span><span class="chip glass"><span><span class="ncity">12</span> cities</span></span><button id="play" type="button" aria-pressed="true">Pause</button></div>

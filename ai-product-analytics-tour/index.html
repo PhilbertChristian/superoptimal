@@ -343,7 +343,7 @@ body{overflow:hidden}
 .cd.past::before{background:var(--soft)}
 .ev-main h1{font-size:2.3em;line-height:1.04;letter-spacing:-.045em;margin-top:.3em;font-weight:500}
 .ev-main h1 span{display:block;color:var(--brand)}
-.where{display:grid;grid-template-columns:minmax(0,1fr) 17em;gap:1em;align-items:stretch}
+.where{display:block}
 .rows{display:flex;flex-direction:column;justify-content:center;gap:.8em}
 .row-ic{display:grid;grid-template-columns:2.75em minmax(0,1fr);gap:.8em;align-items:center}
 .row-ic b{display:block;font-weight:700;font-size:.97em;line-height:1.3}
@@ -353,14 +353,6 @@ body{overflow:hidden}
 .ic.cal small{display:block;width:100%;text-align:center;font-size:.66em;font-weight:700;line-height:1.4;color:#fff;background:var(--brand);padding:.15em 0}
 .ic.cal strong{font-size:1.06em;font-weight:800;line-height:1.45}
 .ic svg{width:1.3em;height:1.3em;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.mmap{position:relative;min-height:6.5em;border-radius:1em;overflow:hidden;background:radial-gradient(80% 120% at 0% 0%,#CDE7F6 0%,rgba(205,231,246,0) 60%),radial-gradient(70% 100% at 100% 100%,#F6D9C9 0%,rgba(246,217,201,0) 60%),#F4EFE7}
-.mmap svg{position:absolute;inset:0;width:100%;height:100%;display:block}
-.mmap .land circle{fill:rgba(22,39,77,.15)}
-.mmap text{font-family:var(--f-sans);font-weight:600;font-size:3.9px;fill:var(--muted)}
-.mmap .oth circle{fill:#fff;stroke:var(--brand);stroke-width:.8}
-.mmap .me circle.c{fill:var(--brand);stroke:#fff;stroke-width:1}
-.mmap .me text{font-size:5px;font-weight:700;fill:var(--ink)}
-.mmap .halo{fill:var(--brand);opacity:0;transform-box:fill-box;transform-origin:center;animation:halo 1.6s ease-out infinite}
 .reg{background:#fff;border-radius:1.25em;box-shadow:var(--shadow);padding:.9em 1.15em 1.05em;display:grid;grid-template-columns:minmax(0,1fr) 14em;gap:.8em 1.2em;align-items:center}
 .reg-h{grid-column:1/-1;font-size:.84em;font-weight:600;color:var(--muted);padding-bottom:.6em;border-bottom:1px solid var(--line)}
 .appr{display:grid;grid-template-columns:2.5em minmax(0,1fr);gap:.75em;align-items:center}
@@ -405,8 +397,7 @@ body{overflow:hidden}
 .ev-side>.lu,.side-links{order:1}
 }
 @media (max-width:820px){
-.where,.reg{grid-template-columns:1fr}
-.mmap{min-height:8em}
+.reg{grid-template-columns:1fr}
 }
 @media (max-width:640px){
 .evp{margin-top:10px}
@@ -415,7 +406,7 @@ body{overflow:hidden}
 .ev-main h1{font-size:2em}
 .tl{grid-template-columns:1fr}
 }
-@media (prefers-reduced-motion:reduce){.evp{animation:none}.mmap .halo{animation:none;opacity:.3}}
+@media (prefers-reduced-motion:reduce){.evp{animation:none}}
 /* responsive */
 @media (max-width:1100px){
 .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -715,11 +706,6 @@ if(navigator.share){try{await navigator.share({title:evTitle(l),url});return}cat
 try{await navigator.clipboard.writeText(url);lbl.textContent='Link copied'}catch(e){lbl.textContent='Copy failed'}
 setTimeout(()=>{lbl.textContent='Share'},1800)}
 /* a crop of the dot map around the city, with nearby tour stops */
-function miniMap(l){const [cx,cy]=MAP.cities[l.k],w=120,h=50,x0=cx-w/2,y0=cy-h/2,d=MAP.dots;let land='';
-for(let j=0;j<d.length;j+=2){const x=d[j],y=d[j+1];if(x>x0-3&&x<x0+w+3&&y>y0-3&&y<y0+h+3)land+=`<circle cx="${x}" cy="${y}" r="1.1"/>`}
-const near=STOPS.filter(s=>s.k!==l.k).map(s=>[s,MAP.cities[s.k]]).filter(([,[x,y]])=>Math.abs(x-cx)<w/2-6&&Math.abs(y-cy)<h/2-4);
-const up=!near.some(([,[x,y]])=>y<cy&&cy-y<12&&Math.abs(x-cx)<26);
-return `<svg viewBox="${x0} ${y0} ${w} ${h}" preserveAspectRatio="xMidYMid slice"><g class="land">${land}</g>${near.map(([s,[x,y]])=>`<g class="oth"><circle cx="${x}" cy="${y}" r="1.6"/><text x="${x}" y="${y<cy?y-3.6:y+6}" text-anchor="middle">${s.n}</text></g>`).join('')}<g class="me"><circle class="halo" cx="${cx}" cy="${cy}" r="2.4"/><circle class="c" cx="${cx}" cy="${cy}" r="2.4"/><text x="${cx}" y="${up?cy-4.6:cy+7.6}" text-anchor="middle">${l.n}</text></g></svg>`}
 const ICO={
 chev:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>',
 pin:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg>',
@@ -759,7 +745,6 @@ ${nx?`<button class="ev-step nx" type="button" data-ev="${nx.k}" aria-label="Nex
 <div class="row-ic"><div class="ic cal"><small>${fmt(l.date,{month:'short'})}</small><strong>${D(l.date).getUTCDate()}</strong></div><div><b>${fmt(l.date,{weekday:'long',month:'long',day:'numeric',year:'numeric'})}</b><span>5:30 PM to 9:00 PM ${l.tz}</span></div></div>
 <div class="row-ic"><div class="ic">${ICO.pin}</div><div><b>${l.n}, ${l.region}</b><span>Address sent to approved guests</span></div></div>
 </div>
-<div class="mmap" aria-hidden="true">${miniMap(l)}</div>
 </div>
 <div class="reg"><div class="reg-h">Registration</div>
 <div class="appr"><span class="ico">${ICO.appr}</span><div><b>Approval Required</b><span>Your registration is subject to host approval.</span><span>Welcome! To join the event, please register below.</span></div></div>

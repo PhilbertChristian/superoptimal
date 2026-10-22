@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AI Product Analytics Tour</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="AI Product Analytics: a hands-on workshop tour taught by Adam Becker. New York, San Francisco, Chicago, Seattle, Austin, London, Paris, Berlin, Barcelona, Tel Aviv and Dubai.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: an event-calendar page. Cover banner with the live route, calendar header, segmented tabs (Overview, Events, Workshop); each city opens a full event page. */
+:root{
+--bg:#F4F5F6; --card:#FFFFFF; --text:#131517; --sec:#737577; --ter:#B3B5B7;
+--line:rgba(19,21,23,.08); --line2:rgba(19,21,23,.14); --fill:rgba(19,21,23,.04);
+--btn:#131517; --btn-text:#FFFFFF; --tint:#D2402A; --tint-soft:rgba(210,64,42,.10);
+--shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.04);
+--font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+--bg:#131517; --card:#1C1E20; --text:#FFFFFF; --sec:#939597; --ter:#5E6062;
+--line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14); --fill:rgba(255,255,255,.05);
+--btn:#FFFFFF; --btn-text:#131517; --tint:#FF6A4D; --tint-soft:rgba(255,106,77,.12);
+--shadow:0 1px 2px rgba(0,0,0,.3); color-scheme:dark}}
+:root[data-theme="dark"]{
+--bg:#131517; --card:#1C1E20; --text:#FFFFFF; --sec:#939597; --ter:#5E6062;
+--line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14); --fill:rgba(255,255,255,.05);
+--btn:#FFFFFF; --btn-text:#131517; --tint:#FF6A4D; --tint-soft:rgba(255,106,77,.12);
+--shadow:0 1px 2px rgba(0,0,0,.3); color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--tint);outline-offset:2px;border-radius:6px}
+h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-.01em;text-wrap:balance}
+p{margin:0}
+/* top bar */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mark{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;cursor:pointer;background:none;border:0;padding:0}
+.mark i{width:22px;height:22px;border-radius:6px;background:var(--tint);display:grid;place-items:center;color:#fff;font-style:normal;font-size:12px;font-weight:700}
+.top-links{display:flex;gap:4px;align-items:center}
+.ghost{background:none;border:0;cursor:pointer;color:var(--sec);font-weight:500;font-size:14px;padding:6px 10px;border-radius:8px}
+.ghost:hover{color:var(--text);background:var(--fill)}
+.page{max-width:1000px;margin:0 auto;padding-block:20px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+/* calendar header */
+.banner{position:relative;border-radius:16px;overflow:hidden;background:#1B1E24;aspect-ratio:3.2/1;max-width:100%}
+.banner svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.banner .land{fill:#353A43}
+.route-bg{fill:none;stroke:rgba(255,255,255,.18);stroke-width:.8;stroke-dasharray:2 2.5}
+.route-done{fill:none;stroke:#FF6A4D;stroke-width:1.5;stroke-linecap:round}
+.city{cursor:pointer}
+.city circle.c{fill:#1B1E24;stroke:#E7E8EA;stroke-width:1}
+.city.past circle.c{fill:#FF6A4D;stroke:#FF6A4D}
+.city text{font-family:var(--font);font-size:6px;font-weight:500;fill:#A9ADB4}
+.city.active text{fill:#FFFFFF}
+.city .halo{fill:#FF6A4D;opacity:0;transform-box:fill-box;transform-origin:center}
+.city.active .halo{animation:halo 1.6s ease-out infinite}
+@keyframes halo{0%{opacity:.45;transform:scale(1)}100%{opacity:0;transform:scale(5)}}
+.plane{fill:#FF6A4D}
+.banner-ctl{position:absolute;left:14px;right:14px;top:12px;display:flex;justify-content:space-between;align-items:center;gap:8px;pointer-events:none}
+.banner-ctl > *{pointer-events:auto}
+.glass{background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:5px 11px;font-size:12.5px;font-weight:500}
+button.glass{cursor:pointer}
+button.glass:hover{background:rgba(0,0,0,.6)}
+.cal-head{display:flex;flex-direction:column;gap:14px;margin-top:-34px;padding-inline:20px;position:relative}
+.cal-avatar{width:76px;height:76px;border-radius:14px;background:var(--tint);border:4px solid var(--bg);display:grid;place-items:center;color:#fff;font-weight:700;font-size:26px;letter-spacing:-.02em}
+.cal-row{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.cal-head h1{font-size:clamp(28px,4vw,36px);line-height:1.15;font-weight:700}
+.cal-head .desc{color:var(--sec);font-size:15.5px;max-width:62ch;margin-top:6px}
+.cal-meta{display:flex;gap:18px;flex-wrap:wrap;color:var(--sec);font-size:14px;margin-top:2px}
+.cal-meta span{display:inline-flex;align-items:center;gap:6px}
+.cal-meta svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--btn);color:var(--btn-text);border:0;border-radius:8px;padding:9px 16px;font-weight:600;font-size:14px;cursor:pointer;transition:opacity .15s}
+.btn:hover{opacity:.85}
+.btn.full{width:100%;padding:11px 16px}
+.btn.soft{background:var(--fill);color:var(--text)}
+.tabs{display:inline-flex;gap:2px;padding:3px;background:var(--fill);border-radius:10px;margin:28px 20px 0}
+.tabs button{border:0;background:none;cursor:pointer;padding:6px 14px;border-radius:7px;font-weight:500;font-size:14px;color:var(--sec)}
+.tabs button[aria-selected="true"]{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.divider{height:1px;background:var(--line);margin:16px 0 26px}
+.tabpanel{padding-inline:20px}
+.tabpanel[hidden]{display:none}
+/* overview */
+.ov{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:32px;align-items:start}
+.sec-h{font-size:14px;font-weight:600;color:var(--sec);padding-bottom:8px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.prose p{color:var(--text);font-size:15.5px;line-height:1.6;margin-bottom:12px;max-width:62ch}
+.hosts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.hosts li{display:flex;align-items:center;gap:10px;font-weight:500;font-size:14.5px}
+.hosts li small{display:block;color:var(--sec);font-weight:400;font-size:13px}
+.av{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:600;background:var(--fill);border:1px solid var(--line);color:var(--text)}
+.av.t{background:var(--tint);border-color:var(--tint);color:#fff}
+.av.lg{width:40px;height:40px;font-size:13px}
+.series{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:26px}
+.scard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
+.scard .when{font-size:12.5px;font-weight:600;color:var(--tint);text-transform:uppercase;letter-spacing:.04em}
+.scard ul{list-style:none;margin:0;padding:0}
+.scard li button{display:flex;justify-content:space-between;width:100%;background:none;border:0;cursor:pointer;padding:5px 0;font-weight:500;font-size:14.5px;text-align:left}
+.scard li button:hover span:first-child{color:var(--tint)}
+.scard li button span:last-child{color:var(--sec);font-weight:400;font-size:13.5px}
+/* events timeline */
+.tl{display:flex;flex-direction:column}
+.tl-item{display:grid;grid-template-columns:120px 20px minmax(0,1fr);gap:0 14px}
+.tl-date{padding-top:2px}
+.tl-date b{display:block;font-weight:600;font-size:15.5px}
+.tl-date span{color:var(--sec);font-size:14.5px}
+.tl-rail{position:relative;display:flex;justify-content:center}
+.tl-rail::before{content:"";position:absolute;top:10px;bottom:-10px;width:0;border-left:1.5px dashed var(--line2)}
+.tl-item:last-child .tl-rail::before{display:none}
+.tl-rail i{position:relative;width:9px;height:9px;border-radius:50%;background:var(--ter);margin-top:8px}
+.tl-card{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) 112px;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:22px;box-shadow:var(--shadow);transition:border-color .15s,transform .15s;min-width:0}
+.tl-card:hover{border-color:var(--line2);transform:translateY(-1px)}
+.tl-card .time{color:var(--sec);font-size:14px}
+.tl-card h3{font-size:19px;margin:2px 0 8px;font-weight:600}
+.tl-card .by,.tl-card .loc{display:flex;align-items:center;gap:7px;color:var(--sec);font-size:14px;margin-top:4px}
+.tl-card .loc svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8}
+.tl-card .av{width:18px;height:18px;font-size:8px}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:500;padding:2px 8px;border-radius:6px;background:var(--fill);color:var(--sec);margin-top:10px}
+.chip.t{background:var(--tint-soft);color:var(--tint)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.tl-card .thumb{width:112px;border-radius:10px;overflow:hidden;align-self:start}
+.tl-group{font-size:13px;font-weight:600;color:var(--sec);text-transform:uppercase;letter-spacing:.04em;margin:6px 0 14px}
+/* workshop */
+.ws{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:32px;align-items:start}
+.sched{list-style:none;margin:0;padding:0}
+.sched li{display:grid;grid-template-columns:78px minmax(0,1fr);gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.sched time{color:var(--sec);font-size:14px;font-variant-numeric:tabular-nums}
+.sched b{display:block;font-weight:600;font-size:15px}
+.sched span{color:var(--sec);font-size:14px}
+.side-card{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.side-card header{padding:10px 16px;font-size:13.5px;font-weight:500;color:var(--sec);background:var(--fill);border-bottom:1px solid var(--line)}
+.side-card .body{padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.take{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.take li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;font-size:14.5px}
+.take li svg{width:18px;height:18px;stroke:var(--tint);fill:none;stroke-width:2;margin-top:2px}
+.take li span{color:var(--sec)}
+.take li b{display:block;color:var(--text);font-weight:600}
+/* cover art */
+.cover{position:relative;aspect-ratio:1;max-width:100%;container-type:inline-size;overflow:hidden;background:var(--c1);color:var(--c3)}
+.cover svg{position:absolute;inset:0;width:100%;height:100%}
+.cover .cv-top{position:absolute;left:8cqw;top:8cqw;right:8cqw;font-size:5cqw;font-weight:600;letter-spacing:.02em;opacity:.9;line-height:1.3}
+.cover .cv-city{position:absolute;left:8cqw;right:8cqw;bottom:18cqw;font-weight:700;font-size:14cqw;line-height:.98;letter-spacing:-.02em}
+.cover .cv-foot{position:absolute;left:8cqw;bottom:7.5cqw;font-size:4.6cqw;font-weight:500;opacity:.85}
+.cover.mini .cv-top,.cover.mini .cv-foot{display:none}
+.cover.mini .cv-city{font-size:15cqw;bottom:9cqw}
+/* event page */
+.evp{position:relative}
+.evp-bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(1200px 600px at 20% -10%,var(--ev-tint),transparent 60%),var(--bg);pointer-events:none}
+.evp-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;max-width:820px;margin:0 auto 22px}
+.evp-bar .grp{display:flex;gap:6px;flex-wrap:wrap}
+.pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13.5px;font-weight:500;cursor:pointer;color:var(--sec)}
+.pill:hover{color:var(--text);border-color:var(--line2)}
+.ev{display:grid;grid-template-columns:280px minmax(0,1fr);gap:32px;max-width:820px;margin:0 auto;align-items:start}
+.ev-side{display:flex;flex-direction:column;gap:24px}
+.ev-side .cover{border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.12)}
+.tourlist{list-style:none;margin:0;padding:0}
+.tourlist button{display:flex;justify-content:space-between;width:100%;gap:8px;background:none;border:0;cursor:pointer;padding:6px 8px;border-radius:8px;font-size:14px;text-align:left}
+.tourlist button:hover{background:var(--fill)}
+.tourlist button span:last-child{color:var(--sec);font-size:13px}
+.tourlist button[aria-current="true"]{background:var(--fill);font-weight:600}
+.ev-main{display:flex;flex-direction:column;gap:24px;min-width:0}
+.ev-main .kick{display:flex;align-items:center;gap:8px;color:var(--sec);font-size:14px;font-weight:500}
+.ev-main h1{font-size:clamp(30px,4.2vw,40px);line-height:1.1;font-weight:700;margin-top:8px}
+.rows{display:flex;flex-direction:column;gap:14px}
+.row-ic{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;align-items:center}
+.row-ic b{display:block;font-weight:600;font-size:15.5px}
+.row-ic span{color:var(--sec);font-size:14px}
+.ic{width:42px;height:42px;border:1px solid var(--line2);border-radius:9px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--card)}
+.ic.cal{justify-content:flex-start}
+.ic.cal small{display:block;width:100%;text-align:center;font-size:9px;font-weight:600;text-transform:uppercase;color:var(--sec);background:var(--fill);padding:2px 0;border-bottom:1px solid var(--line)}
+.ic.cal strong{font-size:16px;font-weight:600;line-height:1.5}
+.ic svg{width:19px;height:19px;stroke:var(--text);fill:none;stroke-width:1.7}
+.reg .body p{font-size:14.5px}
+.reg .appr{display:grid;grid-template-columns:36px minmax(0,1fr);gap:10px;align-items:center}
+.reg .appr .ico{width:36px;height:36px;border-radius:50%;background:var(--fill);display:grid;place-items:center}
+.reg .appr .ico svg{width:18px;height:18px;stroke:var(--text);fill:none;stroke-width:1.8}
+.reg .appr b{display:block;font-weight:600}
+.reg .appr span{color:var(--sec);font-size:13.5px}
+.reg .msg{font-size:13.5px;color:var(--tint)}
+/* responsive */
+@media (max-width:820px){
+.ov,.ws{grid-template-columns:1fr}
+.ev{grid-template-columns:1fr}
+.ev-side{display:contents}
+.ev-side > .cover{order:0;max-width:340px;width:100%}
+.ev-main{order:1}
+.ev-side > div{order:2}
+}
+@media (max-width:640px){
+.banner{border-radius:12px}
+.banner-ctl{left:8px;right:8px;top:8px}
+.glass{font-size:11px;padding:3px 8px}
+.cal-avatar{width:60px;height:60px;font-size:22px}
+.cal-head{margin-top:-24px}
+#theme{display:none}
+.cal-head,.tabpanel{padding-inline:0}
+.tabs{margin-inline:0}
+.tl-item{grid-template-columns:minmax(0,1fr)}
+.tl-rail{display:none}
+.tl-date{display:flex;gap:6px;align-items:baseline;margin-bottom:8px}
+.tl-card{grid-template-columns:minmax(0,1fr) 84px;gap:12px}
+.tl-card .thumb{width:84px}
+.series{grid-template-columns:1fr}
+.city text{font-size:8px}
+}
+@media (prefers-reduced-motion:reduce){.city.active .halo{animation:none;opacity:.3}.tl-card{transition:none}}
+</style>
+</head>
+<body>
+<header class="top">
+<div class="top-in">
+<button class="mark" type="button" data-tab="overview"><i>S</i>Superoptimal</button>
+<nav class="top-links" aria-label="Sections">
+<button class="ghost" type="button" data-tab="events">Events</button>
+<button class="ghost" type="button" data-tab="workshop">Workshop</button>
+<button class="ghost" type="button" id="theme" aria-label="Switch light or dark">Theme</button>
+</nav>
+</div>
+</header>
+<div class="page" id="home">
+<div class="banner">
+<svg id="map" viewBox="140 78 560 175" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Tour route across North America, Europe and the Middle East"></svg>
+<div class="banner-ctl"><span class="glass" id="now"></span><button class="glass" id="play" type="button" aria-pressed="true">Pause</button></div>
+</div>
+<div class="cal-head">
+<div class="cal-avatar" aria-hidden="true">S</div>
+<div class="cal-row">
+<div>
+<h1>AI Product Analytics Tour</h1>
+<p class="desc">How do you know your AI product is right? A hands-on workshop taught by Adam Becker, on tour in <span class="ncity">11</span> cities from December 2026 to April 2027.</p>
+<div class="cal-meta">
+<span><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span class="ncity">11</span> events</span>
+<span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Taught by Adam Becker</span>
+<span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>3 hours, hands-on</span>
+</div>
+</div>
+<button class="btn" type="button" data-tab="events">Find your city</button>
+</div>
+</div>
+<div class="tabs" role="tablist" aria-label="Tour sections">
+<button role="tab" type="button" id="t-overview" aria-controls="p-overview" aria-selected="true" data-tab="overview">Overview</button>
+<button role="tab" type="button" id="t-events" aria-controls="p-events" aria-selected="false" data-tab="events">Events</button>
+<button role="tab" type="button" id="t-workshop" aria-controls="p-workshop" aria-selected="false" data-tab="workshop">Workshop</button>
+</div>
+<div class="divider"></div>
+<section class="tabpanel" id="p-overview" role="tabpanel" aria-labelledby="t-overview">
+<div class="ov">
+<div>
+<h4 class="sec-h">About the tour</h4>
+<div class="prose">
+<p>Most AI features look fine in the demo and fail quietly in production. This workshop teaches you to catch that early: whether users finish what the AI started, what each answer costs, and whether the answer was any good.</p>
+<p>Adam walks through the analytics behind HeadOn, an AI product with real users, then you build the same setup on your own app: product events, a funnel, LLM traces and an eval loop you can rerun.</p>
+<p>Same workshop, same instructor, in every city.</p>
+</div>
+<div class="series" id="series"></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:24px">
+<div>
+<h4 class="sec-h">Hosted by</h4>
+<ul class="hosts">
+<li><span class="av t">S</span><span>Superoptimal<small>Workshops for AI engineers</small></span></li>
+<li><span class="av">AB</span><span>Adam Becker<small>Instructor</small></span></li>
+</ul>
+</div>
+<div class="side-card">
+<header>Next up</header>
+<div class="body" id="next-up"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tabpanel" id="p-events" role="tabpanel" aria-labelledby="t-events" hidden>
+<div class="tl" id="tl"></div>
+</section>
+<section class="tabpanel" id="p-workshop" role="tabpanel" aria-labelledby="t-workshop" hidden>
+<div class="ws">
+<div>
+<h4 class="sec-h">Schedule</h4>
+<ol class="sched">
+<li><time>5:30 PM</time><div><b>Doors, food, setup</b><span>Get your laptop and your app ready.</span></div></li>
+<li><time>6:00 PM</time><div><b>Why AI features fail quietly</b><span>What to measure so you find out before your users do.</span></div></li>
+<li><time>6:20 PM</time><div><b>Walkthrough of a real product</b><span>One HeadOn user, from first visit to an evaluated AI answer.</span></div></li>
+<li><time>6:50 PM</time><div><b>Build 1: events and a funnel</b><span>Instrument the actions your AI feature is supposed to drive.</span></div></li>
+<li><time>7:30 PM</time><div><b>Build 2: traces and cost</b><span>Latency, tokens and spend per answer, tied to the user who saw it.</span></div></li>
+<li><time>8:10 PM</time><div><b>Build 3: an eval loop</b><span>Score answers and chart quality next to retention.</span></div></li>
+<li><time>8:50 PM</time><div><b>Wrap</b><span>What to watch in your first week of data.</span></div></li>
+</ol>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px">
+<div class="side-card">
+<header>What you take home</header>
+<div class="body">
+<ul class="take">
+<li><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg><div><b>Your AI feature, instrumented</b><span>Events, a funnel and traces on your own code.</span></div></li>
+<li><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg><div><b>An eval loop you can rerun</b><span>A judge prompt, a score and a chart.</span></div></li>
+<li><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg><div><b>A reference event schema</b><span>The one used at HeadOn, ready to adapt.</span></div></li>
+<li><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg><div><b>The session recording</b><span>Sent after your city.</span></div></li>
+</ul>
+</div>
+</div>
+<div class="side-card">
+<header>What to bring</header>
+<div class="body"><p style="font-size:14.5px">A laptop and an app with an AI feature you can run locally. No app with you? You'll work on the sample app.</p></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="page evp" id="event" hidden></div>
+<script>
+const MAP=(()=>{const M={"g":[110,50,4,63,154],"b":"AAAAAAAgFL7///8BABcAAAAAAgAAAAAAUsgU/P//AwAAAAAMAPgDAAAAAMCAfgD8/w8AAAAABgD/DwAAAABcYOsB8P8PAAAAAAwA/z8AAAAA2B/lH8D/fwAAAAAwsP//BQD/AQT/HP+B//8AAMAHAMD///MB////T+COB/j/AACA/wPy7f/fD/7/////Hz74PwAAgP8f/v//P3v+/////x+4wB/gAwC/n/////8B4P/////v8IA/AAcAfn//////A/D/////DwEFeAAAAP78/////x/w/////w/gAPAAAAD8+f////8/oH/4//8fgAcAAAAA4A/8/////wEYwP//f4DfAAAAAIIc/v////8DUAD8//8B/AcAAAAYaPT/////HwgA8P//P/gfAAAAMNDw/////z8EAMD////z/wEAAGCD+P//////AQAA////7/8HAADAzv///////wMAAPj//7//HwAAAHn///////8fAADo/////y8AAAAw////////PwAAgP////+RAwAAAP7///////8BAAD9////DQ8AAAD+////////AwAA+P///38AAAAA4P//78///x8AAPD/////AwAAAIB///uP//8/AADA/////wIAAAAAfvMPfP7//wEAwP////8AAAAAwB+MH+Dx//8DAAD+////AwAAAAD/wPwcH///HwAA/P///wEAAAAA/CBy/3/+/z8AAPD///8HAAAAAPADkPn/8f//AQDA////DwAAAADABxji/8f//wMAAP///z8AAAAAAMQfAOz///8fAAD8//9/AAAAAAD4P4CQ////PwAAwP//fwAAAAAA4P8BAP7///8BAAD///8AAAAAAMD/HwL8////AwAA9P//AQAAAAAA///49v///x8AAND/HwcAAAAAAP7///9///8/AACA/g8QAAAAAAD4//9///v//wEAAPsPYAAAAAAA+P////nP//8DAADQPwABAAAAAOD////Pf/D/HwAAIH8AAAAAAADA////P/8T8D8AAAD4AUAAAAAAgP/////7/4D/AQAA4ANgAAAAAAD+////7/8H/AMAAAAfDAQAAAAA+P///3//H+AfAAAAfhgwAAAAAOD/////+D8APwAAAPBzAAwAAACA/////8f/APgBAAAA/wAAAAAAAP7///8f/wHgAwAAAPADAAAAAAD4//////gBgB8AAAAAfgAAAAAA8P/////3AQAcAAAAAOADAAAAAID/////vwMA8AAAAAAABgAAAAAA//////8BAMADAAAAABDQAAAAAPD/////xwEADgAAAABA8D8AAADA//////8DABgAAAAAAO7/AQAAAP7/////DwBAAQAAAACA/w8AAAD4/////x8AAAAAAAAAAP5/AAAAgH/+//9/AAAAAAAAAAD4/w8AAAAG+P///wAAAAAAAAAA4P9/AAAAAAD///8DAAAAAAAAAMD//wEAAAAA/P//BwAAAAAAAAAA//8PAAAAAPD//w8AAAAAAAAAAP7/PwAAAADA//8PAAAAAAAAAAD4//8HAAAAAP//PwAAAAAAAAAA4P//fwAAAAD8/38AAAAAAAAAAID///8PAAAAwP//AQAAAA==","cities":{"nyc":[314.8,156.3],"sf":[189.7,165.6],"sea":[204.2,134.9],"chi":[281.8,152.7],"aus":[245.5,189.4],"lon":[499.7,123],"par":[505.6,131],"ber":[531.5,119.9],"bcn":[505.4,154.2],"tlv":[590,183.6],"dxb":[646,205.4]}};const [X0,Y0,S,R,C]=M.g;const b=atob(M.b);const dots=[];for(let r=0;r<R;r++)for(let c=0;c<C;c++){const k=r*C+c;if(b.charCodeAt(k>>3)>>(k&7)&1)dots.push(X0+(r%2?S/2:0)+c*S,Y0+r*S)}return {dots,cities:M.cities}})();
+/* ---------- tour data: edit dates, time zones and registration links here ---------- */
+const STOPS=[
+{k:'nyc',n:'New York',     region:'New York',      s:0,date:'2026-12-10',tz:'EST', reg:''},
+{k:'sf', n:'San Francisco',region:'California',    s:1,date:'2027-02-04',tz:'PST', reg:''},
+{k:'chi',n:'Chicago',      region:'Illinois',      s:1,date:'2027-02-11',tz:'CST', reg:''},
+{k:'sea',n:'Seattle',      region:'Washington',    s:1,date:'2027-02-18',tz:'PST', reg:''},
+{k:'aus',n:'Austin',       region:'Texas',         s:1,date:'2027-02-25',tz:'CST', reg:''},
+{k:'lon',n:'London',       region:'England',       s:2,date:'2027-03-04',tz:'GMT', reg:''},
+{k:'par',n:'Paris',        region:'France',        s:2,date:'2027-03-11',tz:'CET', reg:''},
+{k:'ber',n:'Berlin',       region:'Germany',       s:2,date:'2027-03-18',tz:'CET', reg:''},
+{k:'bcn',n:'Barcelona',    region:'Spain',         s:2,date:'2027-03-25',tz:'CET', reg:''},
+{k:'tlv',n:'Tel Aviv',     region:'Israel',        s:3,date:'2027-04-08',tz:'IDT', reg:''},
+{k:'dxb',n:'Dubai',        region:'United Arab Emirates',s:3,date:'2027-04-22',tz:'GST', reg:''},
+];
+const SERIES=['New York · December 2026','US series · February 2027','Europe series · March 2027','Middle East series · April 2027'];
+const N=STOPS.length;
+const D=s=>new Date(s+'T12:00:00Z');
+const fmt=(s,o)=>D(s).toLocaleDateString('en-US',Object.assign({timeZone:'UTC'},o));
+document.querySelectorAll('.ncity').forEach(e=>e.textContent=N);
+const PIN='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>';
+const LOCK='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+/* ---------- cover art ---------- */
+const d=MAP.dots;
+function coverHTML(i,mini){
+const l=STOPS[i],[cx,cy]=MAP.cities[l.k],h=(i*33+200)%360,W=120;
+const c1=`hsl(${h} 42% 22%)`,c2=`hsl(${h} 36% 38%)`,c3=`hsl(${h} 35% 95%)`;
+let dots='';
+for(let j=0;j<d.length;j+=2){const x=d[j],y=d[j+1];if(Math.abs(x-cx)<W*.65&&Math.abs(y-cy)<W*.65)dots+=`<circle cx="${x}" cy="${y}" r="1.35"/>`}
+return `<div class="cover${mini?' mini':''}" style="--c1:${c1};--c3:${c3}" role="img" aria-label="${l.n} cover"><svg viewBox="${cx-W*.42} ${cy-W*.5} ${W} ${W}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="${c2}">${dots}</g><circle cx="${cx}" cy="${cy}" r="6" fill="#FF6A4D" opacity=".25"/><circle cx="${cx}" cy="${cy}" r="2.6" fill="#FF6A4D"/></svg><div class="cv-top">AI Product Analytics<br>Workshop</div><div class="cv-city">${l.n.replace(' ','<br>')}</div><div class="cv-foot">${fmt(l.date,{month:'short',day:'numeric',year:'numeric'})}</div></div>`;
+}
+const hue=i=>(i*33+200)%360;
+/* ---------- tabs + routing ---------- */
+const home=document.getElementById('home'),evp=document.getElementById('event');
+let tab='overview',evOpen=null;
+function setTab(t,push=true){
+if(evOpen)closeEvent();
+tab=t;
+document.querySelectorAll('[role=tab]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.tab===t)));
+document.querySelectorAll('.tabpanel').forEach(p=>p.hidden=p.id!=='p-'+t);
+if(push){try{history.replaceState(null,'','#'+t)}catch(e){}}
+}
+document.addEventListener('click',e=>{
+const t=e.target.closest('[data-tab]');if(t){setTab(t.dataset.tab);if(t.closest('.top')||t.classList.contains('btn'))document.querySelector('.tabs').scrollIntoView({behavior:'smooth',block:'start'});return}
+const v=e.target.closest('[data-ev]');if(v)openEvent(v.dataset.ev);
+});
+document.querySelector('.tabs').addEventListener('keydown',e=>{
+const order=['overview','events','workshop'];let i=order.indexOf(tab);
+if(e.key==='ArrowRight'){i=(i+1)%3}else if(e.key==='ArrowLeft'){i=(i+2)%3}else return;
+e.preventDefault();setTab(order[i]);document.getElementById('t-'+order[i]).focus();
+});
+document.getElementById('theme').onclick=()=>{
+const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+r.dataset.theme=dark?'light':'dark';
+};
+/* ---------- overview ---------- */
+document.getElementById('series').innerHTML=SERIES.map((name,si)=>`<div class="scard"><div class="when">${name}</div><ul>${STOPS.filter(x=>x.s===si).map(x=>`<li><button type="button" data-ev="${x.k}"><span>${x.n}</span><span>${fmt(x.date,{month:'short',day:'numeric'})}</span></button></li>`).join('')}</ul></div>`).join('');
+const today=new Date();const nextStop=STOPS.find(s=>D(s.date)>=today)||STOPS[0];const ni=STOPS.indexOf(nextStop);
+document.getElementById('next-up').innerHTML=`<button type="button" data-ev="${nextStop.k}" style="all:unset;cursor:pointer;display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;align-items:center"><div style="width:64px;border-radius:8px;overflow:hidden">${coverHTML(ni,true)}</div><div><div style="color:var(--sec);font-size:13.5px">${fmt(nextStop.date,{weekday:'short',month:'short',day:'numeric'})} · 5:30 PM</div><div style="font-weight:600">${nextStop.n}</div></div></button><button class="btn full" type="button" data-ev="${nextStop.k}">Request a seat</button>`;
+/* ---------- events timeline ---------- */
+let tl='';let lastS=-1;
+STOPS.forEach((l,i)=>{
+if(l.s!==lastS){tl+=`<div class="tl-group">${SERIES[l.s]}</div>`;lastS=l.s}
+tl+=`<div class="tl-item"><div class="tl-date"><b>${fmt(l.date,{month:'short',day:'numeric'})}</b><span>${fmt(l.date,{weekday:'long'})}</span></div><div class="tl-rail"><i></i></div>
+<button class="tl-card" type="button" data-ev="${l.k}"><div style="min-width:0"><div class="time">5:30 PM ${l.tz}</div><h3>AI Product Analytics Workshop · ${l.n}</h3><div class="by"><span class="av">AB</span>By Adam Becker</div><div class="loc">${PIN}${l.n}, ${l.region}</div><div class="chips"><span class="chip">Approval required</span>${i===ni?'<span class="chip t">Next up</span>':''}</div></div><div class="thumb">${coverHTML(i,true)}</div></button></div>`;
+});
+document.getElementById('tl').innerHTML=tl;
+/* ---------- banner map ---------- */
+const svg=document.getElementById('map');const NS='http://www.w3.org/2000/svg';
+let landSvg='';for(let i=0;i<d.length;i+=2)landSvg+=`<circle cx="${d[i]}" cy="${d[i+1]}" r="1.15"/>`;
+const pts=STOPS.map(l=>MAP.cities[l.k]);
+let pathD=`M${pts[0][0]} ${pts[0][1]}`;const segD=[];
+for(let i=1;i<pts.length;i++){
+const [x1,y1]=pts[i-1],[x2,y2]=pts[i];const dist=Math.hypot(x2-x1,y2-y1);
+const lift=Math.min(40,dist*.35);pathD+=` Q${((x1+x2)/2).toFixed(1)} ${((y1+y2)/2-lift).toFixed(1)} ${x2} ${y2}`;segD.push(pathD);
+}
+const LBL={nyc:[7,3,'start'],sf:[0,10,'middle'],sea:[-6,-3,'end'],chi:[-5,-6,'end'],aus:[0,10,'middle'],lon:[-6,-3,'end'],par:[-6,7,'end'],ber:[6,-2,'start'],bcn:[0,10,'middle'],tlv:[-6,10,'end'],dxb:[6,3,'start']};
+svg.innerHTML=`<g class="land">${landSvg}</g><path class="route-bg" d="${pathD}"/><path class="route-done" id="rdone" d="${pathD}"/>`+
+STOPS.map((l,i)=>{const [x,y]=pts[i];const [dx,dy,a]=LBL[l.k];
+return `<g class="city" data-i="${i}"><circle class="halo" cx="${x}" cy="${y}" r="2.6"/><circle class="c" cx="${x}" cy="${y}" r="2.6"/><text x="${x+dx}" y="${y+dy}" text-anchor="${a}">${l.n}</text></g>`}).join('')+`<circle class="plane" id="plane" r="3.2"/>`;
+const rdone=document.getElementById('rdone'),plane=document.getElementById('plane');
+const L=rdone.getTotalLength();
+const tmp=document.createElementNS(NS,'path');svg.appendChild(tmp);
+const at=[0,...segD.map(s=>{tmp.setAttribute('d',s);return tmp.getTotalLength()})];tmp.remove();
+const cityEls=[...svg.querySelectorAll('.city')];
+let idx=0,pos=0,playing=!matchMedia('(prefers-reduced-motion: reduce)').matches,phase='dwell',phaseT=0,last=0;
+const TRAVEL=1500,DWELL=1400;
+function setActive(i){idx=i;cityEls.forEach((c,j)=>{c.classList.toggle('active',j===i);c.classList.toggle('past',j<i)});
+const s=STOPS[i];document.getElementById('now').textContent=`${s.n} · ${fmt(s.date,{month:'short',day:'numeric',year:'numeric'})}`}
+function draw(){rdone.style.strokeDasharray=`${pos} ${L+10}`;const p=rdone.getPointAtLength(Math.min(pos,L));plane.setAttribute('cx',p.x);plane.setAttribute('cy',p.y)}
+const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+function jump(i){setActive(i);pos=at[i];phase='dwell';phaseT=0;draw()}
+function tick(now){
+requestAnimationFrame(tick);const dt=last?Math.min(64,now-last):16;last=now;
+if(!playing||evOpen)return;
+phaseT+=dt;
+if(phase==='dwell'&&phaseT>=DWELL){if(idx===N-1){jump(0);return}phase='travel';phaseT=0}
+if(phase==='travel'){const t=Math.min(1,phaseT/TRAVEL);pos=at[idx]+(at[idx+1]-at[idx])*ease(t);if(t>=1){setActive(idx+1);phase='dwell';phaseT=0}draw()}
+}
+cityEls.forEach(c=>c.addEventListener('click',()=>openEvent(STOPS[+c.dataset.i].k)));
+const playBtn=document.getElementById('play');
+function syncPlay(){playBtn.textContent=playing?'Pause':'Play';playBtn.setAttribute('aria-pressed',String(playing))}
+playBtn.onclick=()=>{playing=!playing;syncPlay()};
+if(!playing){pos=L;draw();setActive(N-1)}else jump(0);
+syncPlay();requestAnimationFrame(tick);
+/* ---------- event page ---------- */
+function openEvent(k){
+const i=STOPS.findIndex(l=>l.k===k);if(i<0)return;
+const l=STOPS[i],prev=STOPS[(i-1+N)%N],next=STOPS[(i+1)%N];
+const reg=l.reg?`<a class="btn full" href="${l.reg}" target="_blank" rel="noopener">Request to Join</a>`:`<button class="btn full" type="button" id="join">Request to Join</button><div class="msg" id="join-msg" hidden>Seat requests for ${l.n} open soon.</div>`;
+evp.style.setProperty('--ev-tint',`hsl(${hue(i)} 45% 50% / .16)`);
+evp.innerHTML=`<div class="evp-bg"></div>
+<div class="evp-bar"><div class="grp"><button class="pill" type="button" id="ev-back">All events</button></div><div class="grp"><button class="pill" type="button" data-ev="${prev.k}">${prev.n}</button><button class="pill" type="button" data-ev="${next.k}">${next.n}</button></div></div>
+<article class="ev">
+<aside class="ev-side">
+${coverHTML(i,false)}
+<div><h4 class="sec-h">Hosted By</h4><ul class="hosts">
+<li><span class="av t">S</span><span>Superoptimal</span></li>
+<li><span class="av">AB</span><span>Adam Becker</span></li>
+</ul></div>
+<div><h4 class="sec-h">On tour in ${N} cities</h4><ul class="tourlist">${STOPS.map(x=>`<li><button type="button" data-ev="${x.k}" aria-current="${x.k===k}"><span>${x.n}</span><span>${fmt(x.date,{month:'short',day:'numeric'})}</span></button></li>`).join('')}</ul></div>
+</aside>
+<div class="ev-main">
+<div>
+<div class="kick"><span class="av t" style="width:22px;height:22px;font-size:10px">S</span>AI Product Analytics Tour · ${SERIES[l.s].split(' · ')[0]}</div>
+<h1>AI Product Analytics Workshop · ${l.n}</h1>
+</div>
+<div class="rows">
+<div class="row-ic"><div class="ic cal"><small>${fmt(l.date,{month:'short'})}</small><strong>${D(l.date).getUTCDate()}</strong></div><div><b>${fmt(l.date,{weekday:'long',month:'long',day:'numeric'})}</b><span>5:30 PM to 9:00 PM ${l.tz}</span></div></div>
+<div class="row-ic"><div class="ic">${PIN}</div><div><b>${l.n}</b><span>${l.region} · address sent to approved guests</span></div></div>
+</div>
+<div class="side-card reg">
+<header>Registration</header>
+<div class="body">
+<div class="appr"><div class="ico">${LOCK}</div><div><b>Approval Required</b><span>Your seat is confirmed by the host.</span></div></div>
+<p>Small room, limited seats. Bring a laptop and an app with an AI feature.</p>
+${reg}
+</div>
+</div>
+<div class="prose">
+<h4 class="sec-h">About Event</h4>
+<p>How do you know your AI product is right? Most AI features look fine in the demo and fail quietly in production. In this three-hour hands-on workshop, Adam Becker shows you how to catch that: whether users finish what the AI started, what each answer costs, and whether the answer was any good.</p>
+<p>He walks through the analytics behind HeadOn, an AI product with real users. Then you build the same setup on your own app: product events, a funnel, LLM traces and an eval loop you can rerun.</p>
+<p>This is stop ${i+1} of ${N} on the AI Product Analytics Tour.</p>
+</div>
+<div>
+<h4 class="sec-h">Schedule</h4>
+<ol class="sched">
+<li><time>5:30 PM</time><div><b>Doors, food, setup</b></div></li>
+<li><time>6:00 PM</time><div><b>Why AI features fail quietly</b></div></li>
+<li><time>6:20 PM</time><div><b>Walkthrough of a real product</b></div></li>
+<li><time>6:50 PM</time><div><b>Build 1: events and a funnel</b></div></li>
+<li><time>7:30 PM</time><div><b>Build 2: traces and cost</b></div></li>
+<li><time>8:10 PM</time><div><b>Build 3: an eval loop</b></div></li>
+<li><time>8:50 PM</time><div><b>Wrap</b></div></li>
+</ol>
+</div>
+<div>
+<h4 class="sec-h">Location</h4>
+<div class="row-ic"><div class="ic">${PIN}</div><div><b>${l.n}, ${l.region}</b><span>The exact address is shared with approved guests before the event.</span></div></div>
+</div>
+</div>
+</article>`;
+home.hidden=true;evp.hidden=false;evOpen={k,i};window.scrollTo(0,0);
+document.getElementById('ev-back').onclick=()=>{closeEvent();setTab('events')};
+const j=document.getElementById('join');if(j)j.onclick=()=>{document.getElementById('join-msg').hidden=false};
+try{history.replaceState(null,'','#city-'+k)}catch(err){}
+}
+function closeEvent(){evp.hidden=true;evp.innerHTML='';home.hidden=false;evOpen=null;last=0;window.scrollTo(0,0)}
+document.addEventListener('keydown',e=>{
+if(!evOpen)return;
+if(e.key==='Escape'){closeEvent();setTab('events')}
+if(e.key==='ArrowRight')openEvent(STOPS[(evOpen.i+1)%N].k);
+if(e.key==='ArrowLeft')openEvent(STOPS[(evOpen.i-1+N)%N].k);
+});
+/* ---------- boot ---------- */
+(function(){const h=(location.hash||'').slice(1);
+if(h.startsWith('city-'))openEvent(h.slice(5));
+else if(['overview','events','workshop'].includes(h))setTab(h,false);
+})();
+</script>
+</body>
+</html>

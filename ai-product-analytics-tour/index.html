@@ -109,6 +109,24 @@ body{overflow:hidden}
 .tba-series .series-head{padding-bottom:2px}
 .sec{padding-block:30px 10px}
 @media (max-width:640px){.tb-l{display:none}.topbar{padding-top:12px}}
+
+.side-foot{margin-top:auto;padding-top:16px}
+.contact{display:flex;flex-direction:column;gap:4px}
+.contact .side-h{padding:0 12px 4px}
+.contact a{display:flex;flex-direction:column;padding:9px 12px;border-radius:12px;text-decoration:none}
+.contact a:hover{background:rgba(255,255,255,.6)}
+.contact b{font-size:14.5px;font-weight:700;letter-spacing:-.01em}
+.contact a span{font-size:13px;color:var(--muted)}
+.foot{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
+.foot a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.foot a:hover{color:var(--ink)}
+.bento.contact-bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+.contact-bento .tile{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.contact-bento .tile.c-butter .label{background:#fff}
+.contact-bento .tile:not(.c-butter) .label{background:var(--page);box-shadow:none}
+.contact-bento h3{font-size:clamp(24px,2.4vw,32px);font-weight:800;letter-spacing:-.045em;line-height:1.05}
+.contact-bento p{color:var(--body);max-width:30em}
+@media (max-width:640px){.bento.contact-bento{grid-template-columns:1fr}}
 /* ---------- sand frames + bento tiles (YC background, TechEquity panels) ---------- */
 .frame{background:var(--sand);border-radius:32px;padding:clamp(12px,1.6vw,20px);margin-top:20px}
 .bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
@@ -121,7 +139,7 @@ body{overflow:hidden}
 .t-intro .lead{color:var(--body);font-size:16.5px;margin-top:12px;max-width:34em}
 .ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
 .t-lect{grid-column:span 4;display:flex;flex-direction:column;gap:2px;background:#FAF7F1;--dp:#A6192E}
-.t-lect img{width:100%;height:230px;border-radius:18px;object-fit:cover;object-position:50% 28%;margin-bottom:14px;display:block}
+.t-lect img{width:100%;height:auto;aspect-ratio:1;border-radius:18px;object-fit:cover;margin-bottom:12px;display:block}
 .t-lect .creds{margin-top:10px}
 .t-lect .creds li{font-size:14.5px;padding:7px 0}
 .t-lect h3{font-size:28px;letter-spacing:-.04em;line-height:1.05;margin-top:2px}
@@ -410,6 +428,13 @@ a.pe:hover{transform:translateY(-2px)}
 <a href="#dates" data-go="dates">Dates and cities</a>
 <a href="#workshop" data-go="workshop">Workshop</a>
 </nav>
+<div class="side-foot">
+<div class="contact">
+<span class="side-h">Contact</span>
+<a href="https://luma.com/superoptimal" target="_blank" rel="noopener"><b>Luma calendar</b><span>Follow for new cities</span></a>
+<a href="https://superoptimal.pipedrive.com/scheduler/4X9vk7CE/meeting-diego-mangabeira-superoptimal" target="_blank" rel="noopener"><b>Sponsors</b><span>Book a call with Diego</span></a>
+</div>
+</div>
 </aside>
 <main class="stage" id="stage">
 <header class="topbar wrap"><span class="tb-l">Hands-on workshops for AI engineers</span><div class="tb-r" id="next-up"></div></header>
@@ -433,7 +458,7 @@ a.pe:hover{transform:translateY(-2px)}
 <span class="side-h">Lecturer</span>
 <h3>Adam Becker</h3>
 <p class="role">CEO of HeadOn</p>
-<ul class="bubbles creds"><li><span>A decade founding tech companies, including Telepath, a machine learning platform</span></li><li><span>Runs in-person rooms for the MLOps Community</span></li><li><span>Astrophysics, UC Berkeley</span></li></ul>
+<ul class="bubbles creds"><li><span>A decade founding tech and machine learning companies</span></li><li><span>Leads in-person events at the MLOps Community</span></li></ul>
 </div>
 <div class="tile tourmap">
 <div class="tm-top"><span class="chip"><i></i>World tour</span><span class="chip glass"><span class="ncity">12</span> cities</span></div>
@@ -464,7 +489,23 @@ a.pe:hover{transform:translateY(-2px)}
 </div>
 </div>
 </section>
-<p class="foot">© 2026 The Superoptimal</p>
+<section class="frame" id="contact" aria-labelledby="c-h">
+<div class="bento contact-bento">
+<div class="tile">
+<span class="label">Contact</span>
+<h3 id="c-h">Questions about a city?</h3>
+<p>Follow our Luma calendar for new dates and cities. Every registration goes through Luma.</p>
+<a class="pill ghost" href="https://luma.com/superoptimal" target="_blank" rel="noopener">Luma calendar</a>
+</div>
+<div class="tile c-butter">
+<span class="label">Sponsors</span>
+<h3>Want to support a city?</h3>
+<p>Diego runs sponsorships for The Superoptimal. Book a call with him.</p>
+<a class="pill dark" href="https://superoptimal.pipedrive.com/scheduler/4X9vk7CE/meeting-diego-mangabeira-superoptimal" target="_blank" rel="noopener">Book a call with Diego</a>
+</div>
+</div>
+</section>
+<p class="foot"><span>© 2026 The Superoptimal</span><a href="https://luma.com/superoptimal" target="_blank" rel="noopener">Luma calendar</a><a href="https://superoptimal.pipedrive.com/scheduler/4X9vk7CE/meeting-diego-mangabeira-superoptimal" target="_blank" rel="noopener">Sponsors: book a call with Diego</a></p>
 </div>
 </div>
 
@@ -476,7 +517,7 @@ a.pe:hover{transform:translateY(-2px)}
 </div>
 <div class="filters" id="filters" role="tablist" aria-label="Filter by month"></div>
 <div class="frame series-frame"><div id="series"></div><div class="series tba-series"><div class="series-head"><h3>12th city <span>Announced soon</span></h3></div></div></div>
-<p class="foot">© 2026 The Superoptimal</p>
+<p class="foot"><span>© 2026 The Superoptimal</span><a href="https://luma.com/superoptimal" target="_blank" rel="noopener">Luma calendar</a><a href="https://superoptimal.pipedrive.com/scheduler/4X9vk7CE/meeting-diego-mangabeira-superoptimal" target="_blank" rel="noopener">Sponsors: book a call with Diego</a></p>
 </section>
 </div>
 
@@ -494,7 +535,7 @@ a.pe:hover{transform:translateY(-2px)}
 </div>
 </div>
 <div class="ws-end"><a class="pill dark" href="#dates" data-go="dates">Find your city</a></div>
-<p class="foot">© 2026 The Superoptimal</p>
+<p class="foot"><span>© 2026 The Superoptimal</span><a href="https://luma.com/superoptimal" target="_blank" rel="noopener">Luma calendar</a><a href="https://superoptimal.pipedrive.com/scheduler/4X9vk7CE/meeting-diego-mangabeira-superoptimal" target="_blank" rel="noopener">Sponsors: book a call with Diego</a></p>
 </section>
 
 </div>

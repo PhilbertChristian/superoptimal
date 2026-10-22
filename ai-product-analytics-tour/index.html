@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>AI Product Analytics Tour</title>
-<meta name="description" content="AI Product Analytics: a three-hour, hands-on workshop with lecturer Adam Becker in 12 cities, December 2026 to May 2027.">
+<title>Measuring AI: Prove It Works</title>
+<meta name="description" content="Measuring AI: Prove It Works. A three-hour, hands-on AI product analytics workshop with lecturer Adam Becker. 12 workshops in 12 cities, December 2026 to April 2027.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23A6192E%27/%3E%3Ctext x=%2732%27 y=%2748%27 text-anchor=%27middle%27 font-family=%27Georgia,serif%27 font-size=%2746%27 fill=%27%23fff%27%3ES%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
-<meta property="og:title" content="AI Product Analytics Tour">
-<meta property="og:description" content="A hands-on workshop with lecturer Adam Becker. 12 cities, December 2026 to May 2027.">
+<meta property="og:title" content="Measuring AI: Prove It Works">
+<meta property="og:description" content="A hands-on AI product analytics workshop with lecturer Adam Becker. 12 workshops, 12 cities.">
 <meta property="og:image" content="https://philbertchristian.github.io/superoptimal/ai-product-analytics-tour/og.png">
 <meta property="og:url" content="https://philbertchristian.github.io/superoptimal/ai-product-analytics-tour/">
 <meta name="twitter:card" content="summary_large_image">
@@ -93,6 +93,22 @@ body{overflow:hidden}
 .sec-head h2{font-size:clamp(32px,4.4vw,52px);line-height:1.02;letter-spacing:-.045em}
 .sec-head p{color:var(--muted);font-size:17px;margin-top:14px}
 .sec-head .label{display:block;margin-bottom:12px}
+
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px 16px;flex-wrap:wrap;padding-top:18px;padding-bottom:2px}
+.tb-l{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;color:var(--ink)}
+.tb-l::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--brand)}
+.tb-r{display:flex;align-items:center;gap:12px}
+.tb-next{font-size:14.5px;color:var(--muted)}
+.tb-next b{color:var(--ink)}
+.stops .tba,.chip-tba{border:1.5px dashed rgba(17,17,20,.22);color:var(--muted)}
+.stops .tba{height:100%;display:flex;flex-direction:column;gap:1px;border-radius:16px;padding:9px 12px}
+.stops .tba b{font-size:14.5px;letter-spacing:-.02em}
+.stops .tba span{font-size:13px}
+.chip-tba{display:inline-flex;align-items:center;border-radius:999px;padding:4px 10px;font-size:12.5px;font-weight:600}
+.tba-series{background:transparent;border:1.5px dashed rgba(17,17,20,.2)}
+.tba-series .series-head{padding-bottom:2px}
+.sec{padding-block:30px 10px}
+@media (max-width:640px){.tb-l{display:none}.topbar{padding-top:12px}}
 /* ---------- sand frames + bento tiles (YC background, TechEquity panels) ---------- */
 .frame{background:var(--sand);border-radius:32px;padding:clamp(12px,1.6vw,20px);margin-top:20px}
 .bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
@@ -104,19 +120,28 @@ body{overflow:hidden}
 .t-intro .q{font-size:clamp(19px,1.8vw,23px);font-weight:600;letter-spacing:-.02em;margin-top:12px;color:var(--brand)}
 .t-intro .lead{color:var(--body);font-size:16.5px;margin-top:12px;max-width:34em}
 .ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.t-lect{grid-column:span 4;display:flex;flex-direction:column;gap:2px}
-.t-lect img{width:112px;height:112px;border-radius:22px;object-fit:cover;margin-bottom:14px;display:block}
+.t-lect{grid-column:span 4;display:flex;flex-direction:column;gap:2px;background:#FAF7F1;--dp:#A6192E}
+.t-lect img{width:100%;height:230px;border-radius:18px;object-fit:cover;object-position:50% 28%;margin-bottom:14px;display:block}
+.t-lect .creds{margin-top:10px}
+.t-lect .creds li{font-size:14.5px;padding:7px 0}
 .t-lect h3{font-size:28px;letter-spacing:-.04em;line-height:1.05;margin-top:2px}
 .t-lect .role{font-weight:600;color:var(--brand)}
 .t-lect .bio{color:var(--body);font-size:15px;margin-top:10px}
 .tourmap{grid-column:1/-1}
-.past-bento{grid-template-columns:repeat(4,minmax(0,1fr))}
-.t-proof{grid-column:span 2;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.past-bento{grid-template-columns:repeat(3,minmax(0,1fr))}
+.t-proof{grid-column:1/-1;display:flex;flex-direction:column;justify-content:center;gap:14px}
 .t-proof .label{align-self:flex-start}
-.t-proof h2{font-size:clamp(26px,2.8vw,36px);line-height:1.05;letter-spacing:-.04em}
+.t-proof h2{font-size:clamp(36px,4.6vw,64px);font-weight:800;line-height:.98;letter-spacing:-.05em;max-width:13em}
+.t-proof>p{font-size:17px}
+.vanity{margin-top:8px;padding-top:18px;border-top:1.5px dashed rgba(17,17,20,.18);display:flex;flex-direction:column;gap:10px}
+.vanity small{font-size:14px;font-weight:600;color:var(--muted)}
+.vanity .names{display:flex;flex-wrap:wrap;align-items:center;gap:6px 26px}
+.vanity .names span{font-size:clamp(20px,2.1vw,30px);font-weight:800;letter-spacing:-.045em;color:rgba(17,17,20,.8);white-space:nowrap}
+.vanity .names i{width:2px;height:28px;border-radius:2px;background:rgba(17,17,20,.18)}
+@media (max-width:640px){.vanity .names{gap:4px 18px}.vanity .names i{display:none}}
 .t-proof p{color:var(--body)}
 .t-cta{display:flex;flex-direction:column;justify-content:center;gap:8px}
-.t-cta h3{font-size:22px;letter-spacing:-.03em;line-height:1.1}
+.t-cta h3{font-size:clamp(24px,2.4vw,32px);font-weight:800;letter-spacing:-.045em;line-height:1.02}
 .t-cta p{color:var(--body);font-size:15px}
 .t-cta .pill{align-self:flex-start;margin-top:6px}
 @media (max-width:640px){.t-cta{padding:16px}.t-cta h3{font-size:18px}.t-cta .pill{white-space:normal;text-align:center;align-self:stretch;padding:11px 12px}}
@@ -125,37 +150,37 @@ body{overflow:hidden}
 .pcov .im{border-radius:16px;overflow:hidden;aspect-ratio:1;background:#1B1D22}
 .pcov img{width:100%;height:100%;object-fit:cover;display:block}
 .pcov .cap{padding:0 6px 4px;display:flex;flex-direction:column;gap:2px}
-.pcov b{font-size:15px;font-weight:700;letter-spacing:-.02em}
+.pcov b{font-size:19px;font-weight:800;letter-spacing:-.03em}
 .pcov span{font-size:13px;color:var(--muted)}
 .pcov .tag{align-self:flex-start;margin-top:4px}
-.tourmap{border-radius:24px;padding:18px 22px 22px;color:#fff;position:relative;overflow:hidden;isolation:isolate;background:radial-gradient(55% 80% at 95% 0%,#FF7AD9 0%,rgba(255,122,217,0) 62%),radial-gradient(45% 70% at 0% 100%,#3FD0FF 0%,rgba(63,208,255,0) 62%),radial-gradient(40% 60% at 62% 78%,#A070FF 0%,rgba(160,112,255,0) 70%),linear-gradient(135deg,#1F30FF 0%,#3B27F2 60%,#5A2BE6 100%);box-shadow:0 30px 60px -30px rgba(40,30,160,.55)}
+.tourmap{border-radius:24px;padding:18px 22px 22px;color:var(--ink);position:relative;overflow:hidden;isolation:isolate;background:radial-gradient(75% 110% at 0% 0%,#CDE7F6 0%,rgba(205,231,246,0) 58%),radial-gradient(70% 100% at 100% 100%,#F6D9C9 0%,rgba(246,217,201,0) 60%),#F4EFE7}
 .tm-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.chip{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:600;background:#111114;color:#fff}
-.chip i{width:8px;height:8px;border-radius:50%;background:#FFD43B}
-.chip.glass{background:rgba(255,255,255,.16);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
+.chip{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:600;background:var(--ink);color:#fff}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+.chip.glass{background:#fff;color:var(--ink);box-shadow:none}
 .map{margin:6px -8px 0;aspect-ratio:520/150}
 .map svg{width:100%;height:100%;display:block;overflow:hidden}
-.map .land circle{fill:rgba(255,255,255,.24)}
-.map .route-bg{fill:none;stroke:rgba(255,255,255,.5);stroke-width:.7;stroke-dasharray:1.6 2.2}
-.map .route-done{fill:none;stroke:#FFD43B;stroke-width:1.6;stroke-linecap:round}
+.map .land circle{fill:rgba(22,39,77,.13)}
+.map .route-bg{fill:none;stroke:rgba(17,17,20,.28);stroke-width:.7;stroke-dasharray:1.6 2.2}
+.map .route-done{fill:none;stroke:var(--brand);stroke-width:1.5;stroke-linecap:round}
 .map .city{cursor:pointer}
-.map .city circle.c{fill:#2A33F5;stroke:#fff;stroke-width:1.1}
-.map .city.past circle.c{fill:#FFD43B;stroke:#FFD43B}
-.map .city.active circle.c,.map .city.hl circle.c{fill:#FFD43B;stroke:#fff}
-.map .city text{font-family:var(--f-sans);font-weight:600;font-size:6px;fill:rgba(255,255,255,.82)}
-.map .city.active text,.map .city.hl text,.map .city:hover text{fill:#fff;font-weight:700}
-.map .halo{fill:#FFD43B;opacity:0;transform-box:fill-box;transform-origin:center}
+.map .city circle.c{fill:#fff;stroke:var(--brand);stroke-width:1.2}
+.map .city.past circle.c{fill:var(--brand);stroke:var(--brand)}
+.map .city.active circle.c,.map .city.hl circle.c{fill:var(--brand);stroke:#fff}
+.map .city text{font-family:var(--f-sans);font-weight:600;font-size:6px;fill:var(--muted)}
+.map .city.active text,.map .city.hl text,.map .city:hover text{fill:var(--ink);font-weight:700}
+.map .halo{fill:var(--brand);opacity:0;transform-box:fill-box;transform-origin:center}
 .map .city.active .halo{animation:halo 1.6s ease-out infinite}
 @keyframes halo{0%{opacity:.55;transform:scale(1)}100%{opacity:0;transform:scale(4.5)}}
-.map .plane{fill:#FFD43B}
+.map .plane{fill:var(--brand)}
 .map-bar{display:flex;justify-content:flex-end;align-items:center;gap:10px 18px;flex-wrap:wrap;margin-top:6px;font-size:14.5px}
 .map-bar .now{font-weight:700}
 .map-bar .now span{color:rgba(255,255,255,.78);font-weight:500}
-.map-bar button{border:0;background:rgba(255,255,255,.16);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);color:#fff;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer}
+.map-bar button{border:0;background:#fff;box-shadow:none;color:var(--ink);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer}
 .stops{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
-.stops button{width:100%;text-align:left;display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:16px;padding:10px 12px;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);transition:background .15s ease,color .15s ease}
-.stops button:hover,.stops button.active{background:#fff;color:var(--ink)}
-.stops small{font-size:12px;font-weight:600;opacity:.72;font-variant-numeric:tabular-nums}
+.stops button{width:100%;text-align:left;display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.8);color:var(--ink);border:0;border-radius:16px;padding:10px 12px;cursor:pointer;box-shadow:none;transition:background .15s ease,color .15s ease}
+.stops button:hover,.stops button.active{background:var(--ink);color:#fff}
+.stops small{font-size:12px;font-weight:600;opacity:.6;font-variant-numeric:tabular-nums}
 .stops b{font-size:14.5px;font-weight:700;letter-spacing:-.02em;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .stops span{font-size:13px;opacity:.78}
 /* lecturer */
@@ -228,7 +253,7 @@ a.pe:hover{transform:translateY(-2px)}
 .cv-logo{font-family:var(--f-serif);font-size:5cqw;letter-spacing:0;line-height:1;text-shadow:0 1px 8px rgba(0,0,0,.35)}
 .cv-bot{position:absolute;left:6.5cqw;right:6.5cqw;bottom:6.5cqw}
 .cv-kick{font-size:3.3cqw;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.85;margin-bottom:2.2cqw}
-.cv-title{font-weight:800;font-size:14.2cqw;line-height:.92;letter-spacing:-.045em}
+.cv-title{font-weight:800;font-size:11.6cqw;line-height:.92;letter-spacing:-.045em}
 .cv-title .grad{background:linear-gradient(90deg,#FF8A3D,#FFC857 42%,#9EE0CC 74%,#8EC5FF);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.04em}
 .cv-meta{display:flex;align-items:center;gap:2.6cqw;margin-top:3.6cqw;font-size:3.6cqw;font-weight:700;letter-spacing:.12em}
 .cv-meta i{width:1.5px;height:4cqw;background:rgba(255,255,255,.6)}
@@ -282,17 +307,23 @@ a.pe:hover{transform:translateY(-2px)}
 .evp-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;max-width:1040px;margin:0 auto 16px;padding:0 4px}
 .evp-bar .grp{display:flex;gap:8px;flex-wrap:wrap}
 .ev{display:grid;grid-template-columns:300px minmax(0,1fr);gap:30px;max-width:1040px;margin:0 auto;align-items:start}
-.ev-side{display:flex;flex-direction:column;gap:12px}
+.ev-side{display:flex;flex-direction:column;gap:18px}
 .ev-cover{border-radius:var(--r-md);overflow:hidden;aspect-ratio:1;box-shadow:0 22px 44px -26px rgba(40,20,40,.5)}
-.ev-card{background:#fff;border-radius:var(--r-md);padding:14px 16px;display:flex;flex-direction:column;gap:8px}
 .side-h{font-size:12.5px;font-weight:600;color:var(--muted)}
+.lu{display:flex;flex-direction:column;gap:10px}
+.lu-h{font-size:13.5px;font-weight:600;color:var(--muted);padding-bottom:8px;border-bottom:1px solid rgba(17,17,20,.12)}
+.lu p{color:var(--body);font-size:15.5px;line-height:1.55}
+.lu .logo .wm{font-size:19px}
+.lu .logo .mk{width:26px;height:26px;font-size:19px;border-radius:6px}
+.reg-h{grid-column:1/-1;font-size:13.5px;font-weight:600;color:var(--muted);margin:-4px 0 4px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+
 .ev-card .logo .wm{font-size:18px}
 .ev-card .logo .mk{width:26px;height:26px;font-size:19px;border-radius:6px}
 .host{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;line-height:1.25}
 .host img{width:36px;height:36px;border-radius:50%;object-fit:cover}
 .host small{display:block;font-weight:500;color:var(--muted);font-size:13px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.chips button{border:0;background:var(--page);border-radius:999px;padding:5px 10px;font-size:12.5px;font-weight:600;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.chips button{border:0;background:rgba(255,255,255,.7);border-radius:999px;padding:5px 10px;font-size:12.5px;font-weight:600;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
 .chips button:hover{background:#fff;box-shadow:inset 0 0 0 1.5px var(--ink)}
 .chips button[aria-current="true"]{background:var(--ink);color:#fff}
 .ev-main{display:flex;flex-direction:column;gap:16px;min-width:0}
@@ -314,12 +345,12 @@ a.pe:hover{transform:translateY(-2px)}
 .reg .msg{grid-column:1/-1;font-size:14px;color:var(--brand);font-weight:600}
 .about{display:flex;flex-direction:column;gap:6px}
 .about p{color:var(--body);font-size:15.5px}
-.mini{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:6px}
-.mini .step{padding:11px 14px;border-radius:16px;gap:5px;min-height:0;justify-content:flex-start}
-.mini .step b{font-size:15px;letter-spacing:-.02em}
-.mini .tpill{font-size:12px;padding:3px 9px}
+.mini{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin:4px 0}
+.mini .step{padding:9px 10px 10px;border-radius:14px;gap:6px;min-height:92px;justify-content:space-between}
+.mini .step b{font-size:13.5px;line-height:1.2;letter-spacing:-.015em}
+.mini .tpill{font-size:11px;padding:2px 8px}
 .mini .step.build .tpill{position:static}
-.mini .num{font-size:70px;top:-10px;right:10px}
+.mini .num{font-size:58px;top:-6px;right:6px}
 .facts3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .facts3 .soft{padding:13px 15px;border-radius:16px}
 .facts3 h4{font-size:15px;letter-spacing:-.02em}
@@ -332,9 +363,9 @@ a.pe:hover{transform:translateY(-2px)}
 }
 @media (max-width:1020px){
 .t-intro,.t-lect{grid-column:1/-1}
-.t-lect{display:grid;grid-template-columns:96px minmax(0,1fr);column-gap:16px}
-.t-lect img{grid-row:span 4;width:96px;height:96px;margin:0}
-.t-lect .bio{grid-column:1/-1}
+.t-lect{display:grid;grid-template-columns:120px minmax(0,1fr);column-gap:16px;align-items:end}
+.t-lect img{grid-row:span 3;width:120px;height:120px;margin:0}
+.t-lect .creds{grid-column:1/-1}
 .past-bento{grid-template-columns:repeat(2,minmax(0,1fr))}
 .ev{grid-template-columns:1fr;gap:16px}
 .ev-side{display:grid;grid-template-columns:180px minmax(0,1fr);gap:12px;align-items:start}
@@ -345,7 +376,7 @@ a.pe:hover{transform:translateY(-2px)}
 .step.span2{grid-column:auto}
 .step.build{min-height:150px}
 .step .num{font-size:120px}
-.mini{grid-template-columns:1fr 1fr}
+.mini{grid-template-columns:repeat(3,minmax(0,1fr))}
 .rows,.reg{grid-template-columns:1fr}
 }
 @media (max-width:640px){
@@ -362,7 +393,7 @@ a.pe:hover{transform:translateY(-2px)}
 .cards[data-n="1"] .city-card h4{font-size:24px}
 .lecturer{grid-template-columns:1fr}
 .lecturer .ph{max-width:240px}
-.sec{padding-block:48px 0}
+.sec{padding-block:22px 0}
 .soft{padding:22px}
 .ev-side{grid-template-columns:120px minmax(0,1fr)}
 .evp-bar .grp .pill{padding:8px 12px;font-size:13px}
@@ -379,19 +410,17 @@ a.pe:hover{transform:translateY(-2px)}
 <a href="#dates" data-go="dates">Dates and cities</a>
 <a href="#workshop" data-go="workshop">Workshop</a>
 </nav>
-<div class="side-foot">
-<div class="next" id="next-up"></div>
-</div>
 </aside>
 <main class="stage" id="stage">
+<header class="topbar wrap"><span class="tb-l">Hands-on workshops for AI engineers</span><div class="tb-r" id="next-up"></div></header>
 
 <div class="view" id="v-home">
 <div class="wrap">
 <section class="frame hero" aria-labelledby="h-title">
 <div class="bento">
 <div class="tile t-intro">
-<span class="label">A world tour of hands-on workshops · December 2026 to May 2027</span>
-<h1 id="h-title">AI Product Analytics</h1>
+<span class="label">AI Product Analytics · A hands-on workshop world tour</span>
+<h1 id="h-title">Measuring AI: Prove It Works</h1>
 <p class="q">How do you know your AI product is right?</p>
 <p class="lead">Join us and learn how to measure AI products. In three hours you'll wire up your own AI feature and find out if users finish what it started, what each answer costs, and whether the answer was actually any good.</p>
 <div class="ctas">
@@ -399,16 +428,16 @@ a.pe:hover{transform:translateY(-2px)}
 <a class="pill ghost" href="#workshop" data-go="workshop">The workshop</a>
 </div>
 </div>
-<div class="tile t-lect c-lilac" id="lecturer">
+<div class="tile t-lect" id="lecturer">
 <img data-img="adam" alt="Adam Becker">
 <span class="side-h">Lecturer</span>
 <h3>Adam Becker</h3>
 <p class="role">CEO of HeadOn</p>
-<p class="bio">Adam builds HeadOn, an AI product for hard political conversations. He studied astrophysics at Berkeley and has spent years running rooms for the machine learning community. Every example in this workshop comes from HeadOn.</p>
+<ul class="bubbles creds"><li><span>A decade founding tech companies, including Telepath, a machine learning platform</span></li><li><span>Runs in-person rooms for the MLOps Community</span></li><li><span>Astrophysics, UC Berkeley</span></li></ul>
 </div>
 <div class="tile tourmap">
 <div class="tm-top"><span class="chip"><i></i>World tour</span><span class="chip glass"><span class="ncity">12</span> cities</span></div>
-<div class="map"><svg id="map" viewBox="160 92 520 150" role="img" aria-label="Animated route through the 12 tour cities"></svg></div>
+<div class="map"><svg id="map" viewBox="160 92 520 150" role="img" aria-label="Animated route through the tour cities"></svg></div>
 <div class="map-bar">
 <button id="play" type="button" aria-pressed="true">Pause</button>
 </div>
@@ -423,10 +452,14 @@ a.pe:hover{transform:translateY(-2px)}
 <span class="label">Past events</span>
 <h2 id="p-h">Over 1,000 engineers have registered for our rooms.</h2>
 <p>Hands-on rooms The Superoptimal ran with the AI Collective, Code &amp; Coffee and AI House.</p>
+<div class="vanity" aria-label="Where engineers in our rooms work and study">
+<small>Engineers in our rooms come from</small>
+<div class="names"><span>Google</span><span>Meta</span><span>Anthropic</span><span>Wispr Flow</span><i aria-hidden="true"></i><span>UC Berkeley</span><span>Stanford</span><span>MIT</span></div>
+</div>
 </div>
 <div class="tile c-butter t-cta">
 <h3>12 workshops, 12 cities.</h3>
-<p>Thursdays, December 2026 to May 2027.</p>
+<p>Thursdays, December 2026 to April 2027.</p>
 <a class="pill dark" href="#dates" data-go="dates">Find your city</a>
 </div>
 </div>
@@ -439,10 +472,10 @@ a.pe:hover{transform:translateY(-2px)}
 <section class="sec wrap" aria-labelledby="d-h">
 <div class="sec-head c">
 <h2 id="d-h"><span class="ncity">12</span> cities</h2>
-<p>Thursday evenings, December 2026 to May 2027.</p>
+<p>Thursday evenings, December 2026 to April 2027.</p>
 </div>
 <div class="filters" id="filters" role="tablist" aria-label="Filter by month"></div>
-<div class="frame series-frame"><div id="series"></div></div>
+<div class="frame series-frame"><div id="series"></div><div class="series tba-series"><div class="series-head"><h3>12th city <span>Announced soon</span></h3></div></div></div>
 <p class="foot">© 2026 The Superoptimal</p>
 </section>
 </div>
@@ -483,7 +516,6 @@ const SERIES=[
 {name:'US series',when:'February 2027',m:'February',c:'var(--s1)'},
 {name:'Europe series',when:'March 2027',m:'March',c:'var(--s2)'},
 {name:'Middle East series',when:'April 2027',m:'April',c:'var(--s3)'},
-{name:'The finale',when:'May 2027',m:'May',c:'var(--s4)'},
 ];
 const STOPS=[
 {k:'nyc',n:'New York',     region:'New York',            s:0,date:'2026-12-10',tz:'EST',t:['#FFD86B','#FF8A3D'],img:'photo-1496588152823-86ff7695e68f',reg:''},
@@ -497,7 +529,6 @@ const STOPS=[
 {k:'bcn',n:'Barcelona',    region:'Spain',               s:2,date:'2027-03-25',tz:'CET',t:['#FFC08A','#F2509A'],img:'photo-1650964827770-421afa7960ac',reg:''},
 {k:'tlv',n:'Tel Aviv',     region:'Israel',              s:3,date:'2027-04-08',tz:'IDT',t:['#8EE6FF','#FFE7A0'],img:'photo-1500990702037-7620ccb6a60a',reg:''},
 {k:'dxb',n:'Dubai',        region:'United Arab Emirates',s:3,date:'2027-04-22',tz:'GST',t:['#FFD9A0','#FF7A59'],img:'photo-1623638498061-2fcab5587cb0',reg:''},
-{k:'bos',n:'Boston',       region:'Massachusetts',       s:4,date:'2027-05-06',tz:'EDT',t:['#C7D6FF','#5B7BFF'],img:'photo-1573571162980-28ca0e8f542d',reg:''},
 ];
 const N=STOPS.length;
 const D=s=>new Date(s+'T12:00:00Z');
@@ -505,9 +536,10 @@ const fmt=(s,o)=>D(s).toLocaleDateString('en-US',Object.assign({timeZone:'UTC'},
 const pad=n=>String(n).padStart(2,'0');
 const todayISO=(()=>{const t=new Date();return `${t.getFullYear()}-${pad(t.getMonth()+1)}-${pad(t.getDate())}`})();
 const SC=l=>SERIES[l.s].c;
-document.querySelectorAll('.ncity').forEach(e=>e.textContent=N);
+const TOTAL=12; /* 11 dated stops plus one city to be announced */
+document.querySelectorAll('.ncity').forEach(e=>e.textContent=TOTAL);
 const IMG=l=>`https://images.unsplash.com/${l.img}?auto=format&fit=crop&w=900&h=900&q=70`;
-function cover(l){return `<div class="cv" style="--img:url('${IMG(l)}')"><div class="cv-top"><span class="cv-mk">S</span><span class="cv-logo">The Superoptimal</span></div><div class="cv-bot"><div class="cv-kick">Hands-on workshop</div><div class="cv-title">AI Product<br><span class="grad">Analytics</span></div><div class="cv-meta">${l.n.toUpperCase()}<i></i>${fmt(l.date,{weekday:'short',month:'short',day:'numeric'}).toUpperCase()}</div></div></div>`}
+function cover(l){return `<div class="cv" style="--img:url('${IMG(l)}')"><div class="cv-top"><span class="cv-mk">S</span><span class="cv-logo">The Superoptimal</span></div><div class="cv-bot"><div class="cv-kick">Hands-on workshop</div><div class="cv-title">Measuring AI<br><span class="grad">Prove It Works</span></div><div class="cv-meta">${l.n.toUpperCase()}<i></i>${fmt(l.date,{weekday:'short',month:'short',day:'numeric'}).toUpperCase()}</div></div></div>`}
 let nextI=STOPS.findIndex(s=>s.date>=todayISO);if(nextI<0)nextI=N-1;
 
 /* ---------- the evening (one timeline, builds color coded) ---------- */
@@ -519,7 +551,7 @@ const EVENING=[
 ['8:10 PM','An eval loop','Score answers and chart quality next to retention',3,'g3'],
 ['8:50 PM','Wrap','What to watch in your first week of data',0,'c-aqua span3'],
 ];
-const eveningHTML=(mini=false)=>EVENING.map(([t,h,s,b,c])=>`<div class="step ${mini?c.split(' ')[0]:c}${b?' build':''}"><span class="tpill">${t}${b?` · Build ${b}`:''}</span>${b?`<span class="num" aria-hidden="true">${b}</span>`:''}<b>${h}</b>${mini?'':`<span class="d">${s}</span>`}</div>`).join('');
+const eveningHTML=(mini=false)=>EVENING.map(([t,h,s,b,c])=>`<div class="step ${mini?c.split(' ')[0]:c}${b?' build':''}"><span class="tpill">${t}${b&&!mini?` · Build ${b}`:''}</span>${b?`<span class="num" aria-hidden="true">${b}</span>`:''}<b>${h}</b>${mini?'':`<span class="d">${s}</span>`}</div>`).join('');
 document.getElementById('evening').innerHTML=eveningHTML();
 
 
@@ -533,7 +565,7 @@ fl.innerHTML=['All',...SERIES.map(s=>s.m)].map((t,i)=>`<button type="button" rol
 fl.addEventListener('click',e=>{const b=e.target.closest('[data-f]');if(!b)return;fl.querySelectorAll('button').forEach(x=>x.setAttribute('aria-selected',String(x===b)));const f=+b.dataset.f;document.querySelectorAll('#series .series').forEach((el,i)=>el.hidden=f>=0&&i!==f)});
 
 /* ---------- map card: stops strip ---------- */
-document.getElementById('stops').innerHTML=STOPS.map((l,i)=>`<li><button type="button" data-ev="${l.k}" data-i="${i}"><b>${l.n}</b><span>${fmt(l.date,{month:'short',day:'numeric'})}</span></button></li>`).join('');
+document.getElementById('stops').innerHTML=STOPS.map((l,i)=>`<li><button type="button" data-ev="${l.k}" data-i="${i}"><b>${l.n}</b><span>${fmt(l.date,{month:'short',day:'numeric'})}</span></button></li>`).join('')+'<li><div class="tba"><b>12th city</b><span>Announced soon</span></div></li>';
 
 /* ---------- map ---------- */
 const svg=document.getElementById('map');const NS='http://www.w3.org/2000/svg';const d=MAP.dots;
@@ -575,7 +607,7 @@ document.querySelector('#past-bento .t-cta').insertAdjacentHTML('beforebegin',PA
 
 /* ---------- next up ---------- */
 const nx=STOPS[nextI];
-document.getElementById('next-up').innerHTML=`<small>Next up</small><b>${nx.n}</b><span>${fmt(nx.date,{weekday:'short',month:'short',day:'numeric'})} · 5:30 PM ${nx.tz}</span><button class="pill dark sm" type="button" data-ev="${nx.k}">Request a seat</button>`;
+document.getElementById('next-up').innerHTML=`<span class="tb-next">Next up: <b>${nx.n}</b>, ${fmt(nx.date,{month:'short',day:'numeric'})}</span><button class="pill dark sm" type="button" data-ev="${nx.k}">Request a seat</button>`;
 
 /* ---------- navigation: three pages + event pages ---------- */
 const stage=document.getElementById('stage'),evp=document.getElementById('event');
@@ -609,24 +641,25 @@ evp.innerHTML=`<div class="evp-bg"></div>
 <article class="ev">
 <aside class="ev-side">
 <div class="ev-cover">${cover(l)}</div>
-<div class="ev-card"><div class="side-h">Presented by</div><span class="brand">${WORDMARK}</span><div class="side-h">Lecturer</div><div class="host"><img data-img="adam" alt=""><span>Adam Becker<small>CEO of HeadOn</small></span></div></div>
-<div class="ev-card"><div class="side-h">On tour in ${N} cities</div><div class="chips">${STOPS.map(x=>`<button type="button" data-ev="${x.k}" aria-current="${x.k===k}" title="${x.n}, ${fmt(x.date,{month:'short',day:'numeric'})}">${x.n}</button>`).join('')}</div></div>
+<div class="lu"><div class="lu-h">Presented by</div><span class="brand">${WORDMARK}</span></div>
+<div class="lu"><div class="lu-h">Lecturer</div><div class="host"><img data-img="adam" alt=""><span>Adam Becker<small>CEO of HeadOn</small></span></div></div>
+<div class="lu"><div class="lu-h">On tour in ${TOTAL} cities</div><div class="chips">${STOPS.map(x=>`<button type="button" data-ev="${x.k}" aria-current="${x.k===k}" title="${x.n}, ${fmt(x.date,{month:'short',day:'numeric'})}">${x.n}</button>`).join('')}<span class="chip-tba">12th city soon</span></div></div>
 </aside>
 <div class="ev-main">
-<div><span class="label">Stop ${i+1} of ${N}</span><h1>AI Product Analytics Workshop <span>${l.n}</span></h1></div>
+<div><span class="label">AI Product Analytics · stop ${i+1} of ${TOTAL}</span><h1>Measuring AI: Prove It Works <span>${l.n}</span></h1></div>
 <div class="rows">
 <div class="row-ic"><div class="ic cal"><small>${fmt(l.date,{month:'short'})}</small><strong>${D(l.date).getUTCDate()}</strong></div><div><b>${fmt(l.date,{weekday:'long',month:'long',day:'numeric',year:'numeric'})}</b><span>5:30 PM to 9:00 PM ${l.tz}</span></div></div>
 <div class="row-ic"><div class="ic loc">${pad(i+1)}</div><div><b>${l.n}, ${l.region}</b><span>Address sent to approved guests</span></div></div>
 </div>
-<div class="reg"><div class="t"><b>Approval Required</b><span>Your registration is subject to host approval.</span><span>Welcome! To join the event, please register below.</span></div>${reg}</div>
-<div class="about"><div class="side-h">About Event</div><p><b>How do you know your AI product is right?</b> Most AI features look fine in the demo and fail quietly in production. On your own app, lecturer Adam Becker shows you whether users finish what the AI started, what each answer costs, and whether the answer was any good.</p></div>
-<div><div class="side-h">Event Agenda</div><div class="mini">${eveningHTML(true)}</div></div>
-<div class="facts3">
-<div class="soft c-butter"><h4>Come Prepared</h4><p>A laptop and an app with an AI feature, or work on the sample app.</p></div>
-<div class="soft c-aqua"><h4>What you take home</h4><p>Your AI feature instrumented, an eval loop you can rerun, HeadOn's reference event schema and the session recording.</p></div>
-<div class="soft c-lilac"><h4>Who Should Join?</h4><p>AI, product and founding engineers in ${l.n} shipping agents, copilots, retrieval or summarization.</p></div>
-</div>
+<div class="reg"><div class="reg-h">Registration</div><div class="t"><b>Approval Required</b><span>Your registration is subject to host approval.</span><span>Welcome! To join the event, please register below.</span></div>${reg}</div>
+<div class="lu"><div class="lu-h">About Event</div>
+<p><b>How do you know your AI product is right?</b> Most AI features look fine in the demo and fail quietly in production. On your own app, lecturer Adam Becker shows you whether users finish what the AI started, what each answer costs, and whether the answer was any good.</p>
+<div class="mini">${eveningHTML(true)}</div>
+<p><b>Come prepared:</b> a laptop and an app with an AI feature, or work on the sample app.</p>
+<p><b>What you take home:</b> your AI feature instrumented, an eval loop you can rerun, HeadOn's reference event schema and the session recording.</p>
+<p><b>Who should join:</b> AI, product and founding engineers in ${l.n} shipping agents, copilots, retrieval or summarization.</p>
 <p class="closing">Come for the workshop. Stay for the food, drinks, and people. Space is limited, register early.</p>
+</div>
 </div>
 </article>`;
 

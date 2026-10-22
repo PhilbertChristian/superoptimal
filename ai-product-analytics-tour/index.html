@@ -321,7 +321,6 @@ body{overflow:hidden}
 .hosts{display:flex;flex-direction:column;gap:.55em}
 .host{display:flex;align-items:center;gap:.65em;font-weight:700;font-size:.94em;line-height:1.25}
 .host img{flex:none;width:2.3em;height:2.3em;border-radius:50%;object-fit:cover}
-.host .av{flex:none;display:grid;place-items:center;font-size:.8em;width:2.875em;height:2.875em;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;letter-spacing:.02em}
 .host small{display:block;font-weight:500;color:var(--muted);font-size:.88em}
 .chips{display:flex;flex-wrap:wrap;gap:.38em}
 .chips button{border:0;background:rgba(255,255,255,.7);border-radius:999px;padding:.32em .72em;font-size:.78em;font-weight:600;line-height:1.4;cursor:pointer}
@@ -736,7 +735,6 @@ ${nx?`<button class="ev-step nx" type="button" data-ev="${nx.k}" aria-label="Nex
 </div>
 <div class="lu"><div class="lu-h">Hosted By</div><div class="hosts">
 <div class="host"><img data-img="adam" alt=""><span>Adam Becker<small>Founder, CEO of HeadOn</small></span></div>
-<div class="host"><span class="av" aria-hidden="true">PS</span><span>Philbert Christian Sarana<small>Applied AI Engineer, HeadOn</small></span></div>
 </div></div>
 <div class="lu"><div class="lu-h">On tour in ${TOTAL} cities</div><div class="chips">${STOPS.map(x=>`<button type="button" data-ev="${x.k}" aria-current="${x.k===k}" title="${x.n}, ${fmt(x.date,{month:'short',day:'numeric'})}">${x.n}</button>`).join('')}<span class="chip-tba">12th city soon</span></div></div>
 <div class="side-links"><a href="mailto:${HOST_EMAIL}">Contact the Host</a><span class="tags"><span><i>#</i>AI</span><span><i>#</i>Evals</span><span><i>#</i>Analytics</span></span></div>

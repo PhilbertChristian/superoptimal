@@ -188,6 +188,8 @@ body{overflow:hidden}
 .map{position:relative;margin:6px -8px 0;aspect-ratio:520/150}
 .map svg{width:100%;height:100%;display:block;overflow:hidden}
 .pics{position:absolute;inset:0;pointer-events:none;z-index:2}
+.tourmap .credit{margin:10px 2px 0;font-size:12px;color:var(--soft)}
+.tourmap .credit a{color:inherit}
 .pics .pic{position:absolute;width:clamp(84px,9vw,118px);aspect-ratio:1;margin:calc(clamp(84px,9vw,118px)/-2) 0 0 calc(clamp(84px,9vw,118px)/-2);border-radius:14px;border:4px solid #fff;background:#ddd center/cover no-repeat;box-shadow:0 18px 34px -16px rgba(40,20,20,.45);opacity:0;transform:translate(var(--dx),var(--dy)) scale(.12) rotate(0deg);transition:transform .7s cubic-bezier(.2,.9,.25,1.12),opacity .45s ease}
 .pics .pic.in{opacity:1;transform:translate(0,0) scale(1) rotate(var(--r))}
 .pics .pic.out{opacity:0;transform:translate(0,14px) scale(.94) rotate(var(--r));transition:transform .4s ease,opacity .35s ease}
@@ -427,6 +429,7 @@ body{overflow:hidden}
 <div class="tm-top"><span class="chip"><i></i>World tour</span><span class="chip glass"><span><span class="ncity">12</span> cities</span></span><button id="play" type="button" aria-pressed="true">Pause</button></div>
 <div class="map"><div class="pics" id="pics" aria-hidden="true"></div><svg id="map" viewBox="160 92 520 150" role="img" aria-label="Animated route through the tour cities"></svg></div>
 <ol class="stops" id="stops" aria-label="All tour stops"></ol>
+<p class="credit">Photos: <a href="https://www.flickr.com/photos/204415247@N03/albums/72177720332892718" target="_blank" rel="noopener">Agentic AI Foundation</a></p>
 </div>
 </div>
 </section>
@@ -582,7 +585,7 @@ function setActive(i){idx=i;cityEls.forEach((c,j)=>{c.classList.toggle('active',
 function draw(){const seg=Math.max(0,pos-tail);rdone.style.strokeDasharray=`0 ${tail} ${seg} ${L+10}`;const p=rdone.getPointAtLength(Math.min(pos,L));plane.setAttribute('cx',p.x);plane.setAttribute('cy',p.y)}
 const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
 /* workshop scenes swoosh out of each city while the plane is parked (stock photos, no captions) */
-const PICS=[]; /* add approved event photo URLs here */
+const PICS=["img/rooms/01.jpg", "img/rooms/02.jpg", "img/rooms/03.jpg", "img/rooms/04.jpg", "img/rooms/05.jpg", "img/rooms/06.jpg", "img/rooms/07.jpg", "img/rooms/08.jpg", "img/rooms/09.jpg", "img/rooms/10.jpg", "img/rooms/11.jpg", "img/rooms/12.jpg", "img/rooms/13.jpg", "img/rooms/14.jpg", "img/rooms/15.jpg", "img/rooms/16.jpg", "img/rooms/17.jpg", "img/rooms/18.jpg", "img/rooms/19.jpg", "img/rooms/20.jpg", "img/rooms/21.jpg", "img/rooms/22.jpg", "img/rooms/23.jpg", "img/rooms/24.jpg"]; /* Agentic AI Foundation event photos, CC BY-NC 4.0 */
 const picsEl=document.getElementById('pics');let picN=0,picTimers=[];
 const picURL=p=>p;
 window.addEventListener('load',()=>{PICS.forEach(p=>{const im=new Image();im.src=picURL(p)})});

@@ -136,21 +136,22 @@ body{overflow:hidden}
 .t-intro .label{background:var(--page);box-shadow:none;align-self:flex-start}
 .t-intro h1{font-size:clamp(38px,4.4vw,62px);line-height:1;letter-spacing:-.045em;font-weight:500;margin-top:12px}
 .t-intro .q{display:flex;align-items:center;gap:12px;font-size:clamp(18px,1.7vw,22px);font-weight:500;letter-spacing:-.02em;margin-top:12px;color:var(--ink)}
-.t-intro .q::before,.t-lect .role::before{content:"";flex:none;width:4px;height:.95em;background:var(--brand)}
+.t-intro .q::before{content:"";flex:none;width:4px;height:.95em;background:var(--brand)}
 .t-intro .lead{color:var(--body);font-size:16px;margin-top:10px;max-width:36em}
 .ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.t-intro{container-type:inline-size}
+@container (min-width:600px){.intro-foot{display:flex;align-items:center;gap:24px;margin-top:12px}.intro-foot .lead{flex:1;min-width:0;margin-top:0}.intro-foot .ctas{flex:none;flex-direction:column;flex-wrap:nowrap;margin-top:0}.intro-foot .ctas .pill{width:100%}}
 .t-lect{grid-column:span 4;display:flex;flex-direction:column;gap:2px;background:#FAF7F1;--dp:#A6192E}
 .t-lect img{width:min(100%,200px);height:auto;aspect-ratio:1;border-radius:18px;object-fit:cover;margin-bottom:10px;display:block}
-.blips{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:9px 16px}
-.blips li{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);line-height:1.2}
-.blips li::before{content:"";flex:none;width:3px;height:13px;background:var(--brand)}
+.blips{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.blips li{display:flex;align-items:center;gap:9px;font-size:15.5px;font-weight:500;color:var(--ink);line-height:1.25}
+.blips li::before{content:"";flex:none;width:4px;height:.95em;background:var(--brand)}
 .t-lect h3{font-size:28px;letter-spacing:-.04em;line-height:1.05;margin-top:2px}
-.t-lect .role{display:flex;align-items:center;gap:9px;font-weight:500;color:var(--ink);margin-top:2px}
 .t-lect .bio{color:var(--body);font-size:15px;margin-top:10px}
 .tourmap{grid-column:1/-1}
 .past-bento{grid-template-columns:repeat(3,minmax(0,1fr))}
 .t-proof{grid-column:1/-1;display:flex;flex-direction:column;justify-content:center;gap:14px}
-.t-proof .label{align-self:flex-start}
+.t-proof .label{align-self:flex-start;background:var(--ink);color:#fff;box-shadow:none}
 .t-proof h2{font-size:clamp(36px,4.6vw,64px);font-weight:500;line-height:.98;letter-spacing:-.05em;max-width:13em}
 .t-proof>p{font-size:17px}
 .vanity{margin-top:8px;padding-top:18px;border-top:1.5px dashed rgba(17,17,20,.18);display:flex;flex-direction:column;gap:10px}
@@ -342,8 +343,8 @@ body{overflow:hidden}
 @media (max-width:1020px){
 .t-intro,.t-lect{grid-column:1/-1}
 .t-lect{order:1}
-.t-lect{display:grid;grid-template-columns:120px minmax(0,1fr);column-gap:16px;align-items:end}
-.t-lect img{grid-row:span 3;width:120px;height:120px;margin:0}
+.t-lect{display:grid;grid-template-columns:120px minmax(0,1fr);grid-template-rows:1fr auto;column-gap:16px;align-items:end}
+.t-lect img{grid-row:span 2;width:120px;height:120px;margin:0}
 .t-lect .blips{grid-column:1/-1}
 .past-bento{grid-template-columns:repeat(2,minmax(0,1fr))}
 .ev{grid-template-columns:1fr;gap:16px}
@@ -408,18 +409,19 @@ body{overflow:hidden}
 <span class="label">AI Product Analytics · A hands-on workshop world tour</span>
 <h1 id="h-title">Analyzing Your AI Agents in Production</h1>
 <p class="q">How do you know your AI agents are working in production?</p>
+<div class="intro-foot">
 <p class="lead">Join us for a three-hour, hands-on technical workshop on measuring AI products. Discover the true cost of every answer, run evaluations that score its quality, and see whether users finish what your agent started, all on your own app.</p>
 <div class="ctas">
 <a class="pill dark" href="#dates" data-go="dates">Find your city</a>
 <a class="pill ghost" href="#workshop" data-go="workshop">The workshop</a>
 </div>
 </div>
+</div>
 <div class="tile t-lect" id="lecturer">
 <img data-img="adam" alt="Adam Becker">
 <span class="side-h">Lecturer</span>
 <h3>Adam Becker</h3>
-<p class="role">CEO of HeadOn</p>
-<ul class="blips"><li>Machine learning founder</li><li>10 years engineering</li><li>Former COO, MLOps Community</li></ul>
+<ul class="blips"><li>CEO of HeadOn</li><li>10 yoe ML Engineer</li><li>ex-COO, MLOps Community</li></ul>
 </div>
 <div class="tile tourmap">
 <div class="tm-top"><span class="chip"><i></i>World tour</span><span class="chip glass"><span><span class="ncity">12</span> cities</span></span><button id="play" type="button" aria-pressed="true">Pause</button></div>

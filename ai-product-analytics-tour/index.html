@@ -421,11 +421,11 @@ a.pe:hover{transform:translateY(-2px)}
 <div class="bento past-bento" id="past-bento">
 <div class="tile c-aqua t-proof">
 <span class="label">Past events</span>
-<h2 id="p-h">Nearly 600 engineers registered for our rooms this fall.</h2>
+<h2 id="p-h">Over 1,000 engineers have registered for our rooms.</h2>
 <p>Hands-on rooms The Superoptimal ran with the AI Collective, Code &amp; Coffee and AI House.</p>
 </div>
 <div class="tile c-butter t-cta">
-<h3>Same workshop, 12 cities.</h3>
+<h3>12 workshops, 12 cities.</h3>
 <p>Thursdays, December 2026 to May 2027.</p>
 <a class="pill dark" href="#dates" data-go="dates">Find your city</a>
 </div>
@@ -571,7 +571,7 @@ const PAST=[
 ];
 const esc=s=>s.replace(/&/g,'&amp;');
 function status(p){if(p.d>todayISO)return ['live','Upcoming'];if(p.d===todayISO)return ['live',p.full?'Today, event full':'Today'];return ['','Past event']}
-document.querySelector('#past-bento .t-cta').insertAdjacentHTML('beforebegin',PAST.map(p=>{const [c,t]=status(p);return `<a class="tile pcov" href="${p.url}" target="_blank" rel="noopener" title="${esc(p.title)}"><div class="im"><img src="${LUMA.replace('width=240,height=240','width=400,height=400')}${p.cv}" alt="Event cover: ${esc(p.title)}" loading="lazy"></div><div class="cap"><b>${p.city}</b><span>${fmt(p.d,{month:'short',day:'numeric',year:'numeric'})}${p.n?` · ${p.n} registered`:''}</span>${c?`<span class="tag live">${t}</span>`:''}</div></a>`}).join(''));
+document.querySelector('#past-bento .t-cta').insertAdjacentHTML('beforebegin',PAST.map(p=>{const [c,t]=status(p);return `<a class="tile pcov" href="${p.url}" target="_blank" rel="noopener" title="${esc(p.title)}"><div class="im"><img src="${LUMA.replace('width=240,height=240','width=400,height=400')}${p.cv}" alt="Event cover: ${esc(p.title)}" loading="lazy"></div><div class="cap"><b>${p.city}</b><span>${fmt(p.d,{month:'short',day:'numeric',year:'numeric'})}</span>${c?`<span class="tag live">${t}</span>`:''}</div></a>`}).join(''));
 
 /* ---------- next up ---------- */
 const nx=STOPS[nextI];

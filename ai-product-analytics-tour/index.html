@@ -152,7 +152,7 @@ body{overflow:hidden}
 .t-intro{container-type:inline-size}
 @container (min-width:600px){.intro-foot{display:flex;align-items:center;justify-content:space-between;gap:36px;margin-top:12px}.intro-foot .lead{flex:1;min-width:0;max-width:none;margin-top:0;font-size:15.5px;line-height:1.55}.intro-foot .ctas{flex:none;flex-direction:column;flex-wrap:nowrap;margin-top:0}.intro-foot .ctas .pill{width:100%}}
 .t-lect{grid-column:auto;display:flex;flex-direction:column;gap:2px;background:#FAF7F1;--dp:#A6192E;padding:16px}
-.t-lect img{width:100%;flex:1 1 0;min-height:170px;height:auto;border-radius:18px;object-fit:cover;object-position:50% 62%;margin-bottom:10px;display:block}
+.t-lect img{width:100%;flex:none;aspect-ratio:1;height:auto;border-radius:18px;object-fit:cover;object-position:50% 50%;margin-bottom:10px;display:block}
 .blips{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
 .blips li{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;font-weight:600;letter-spacing:-.005em;color:var(--ink);line-height:1.2;white-space:nowrap}
 .blips li::before{content:"";flex:none;width:3px;height:13px;margin-top:1px;background:var(--brand)}
@@ -605,12 +605,12 @@ let nextI=STOPS.findIndex(s=>s.date>=todayISO);if(nextI<0)nextI=N-1;
 const AGENDA=[
 ['5:30 PM','Doors open','Food, drinks and laptop setup'],
 ['6:00 PM','Opening talk','Why AI features fail quietly in production'],
-['6:50 PM','Session 1','Hands-on, on your own app'],
-['7:30 PM','Session 2','Hands-on, on your own app'],
-['8:10 PM','Session 3','Hands-on, on your own app'],
+['6:50 PM','Session 1',''],
+['7:30 PM','Session 2',''],
+['8:10 PM','Session 3',''],
 ['8:50 PM','Wrap','Q&amp;A, then food and drinks until 9:00'],
 ];
-const agendaHTML=()=>{return `<ol class="tl">${AGENDA.map(r=>[0,r]).map(([,[t,h,d]])=>`<li><time>${t}</time><div><b>${h}</b><span>${d}</span></div></li>`).join('')}</ol>`};
+const agendaHTML=()=>{return `<ol class="tl">${AGENDA.map(r=>[0,r]).map(([,[t,h,d]])=>`<li><time>${t}</time><div><b>${h}</b>${d?`<span>${d}</span>`:''}</div></li>`).join('')}</ol>`};
 
 
 /* ---------- city cards ---------- */
